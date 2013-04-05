@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee                http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+  <!-- Servlets -->
+  
+  <servlet>
+    <servlet-name>greetServlet</servlet-name>
+    <servlet-class>org.sgx.madrenecesidad.server.GreetingServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>greetServlet</servlet-name>
+    <url-pattern>/appenginetest1/greet</url-pattern>
+  </servlet-mapping>
+  
+  
+<!--   Tag -->
+
+
+   <servlet>
+    <servlet-name>tagService</servlet-name>
+    <servlet-class>org.sgx.madrenecesidad.server.TagServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>tagService</servlet-name>
+    <url-pattern>/appenginetest1/tagService</url-pattern>
+  </servlet-mapping>
+  
+  
+<!--   Channel -->
+
+
+  <servlet>
+    <servlet-name>channelService</servlet-name>
+    <servlet-class>org.sgx.madrenecesidad.server.ChannelServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>channelService</servlet-name>
+    <url-pattern>/appenginetest1/channelService</url-pattern>
+  </servlet-mapping>
+  
+  
+<!--   MapView -->
+  
+   <servlet>
+    <servlet-name>mapViewService</servlet-name>
+    <servlet-class>org.sgx.madrenecesidad.server.MapViewServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>mapViewService</servlet-name>
+    <url-pattern>/appenginetest1/mapViewService</url-pattern>
+  </servlet-mapping>
+  
+  
+ <!--   User -->
+  
+   <servlet>
+    <servlet-name>userService</servlet-name>
+    <servlet-class>org.sgx.madrenecesidad.server.UserServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>userService</servlet-name>
+    <url-pattern>/appenginetest1/userService</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+	<welcome-file-list>
+		<welcome-file>index_bootstrap.jsp.html</welcome-file>
+	</welcome-file-list>
+	
+	
+  <!-- objectify -->
+  <filter>
+        <filter-name>ObjectifyFilter</filter-name>
+        <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	        <filter-name>ObjectifyFilter</filter-name>
+	        <url-pattern>/*</url-pattern>
+	</filter-mapping>
+  
+  
+  
+  <!-- Default page to serve -->
+<!--   <welcome-file-list> -->
+<!--     <welcome-file>index.jsp</welcome-file> -->
+<!--   </welcome-file-list> -->
+
+  <servlet>
+    <servlet-name>SystemServiceServlet</servlet-name>
+    <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+    <init-param>
+      <param-name>services</param-name>
+      <param-value/>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SystemServiceServlet</servlet-name>
+    <url-pattern>/_ah/spi/*</url-pattern>
+  </servlet-mapping>
+  
+  
+<!--   vaadin -->
+  
+<!--   <context-param> -->
+<!-- 		<description> -->
+<!-- 		Vaadin production mode</description> -->
+<!-- 		<param-name>productionMode</param-name> -->
+<!-- 		<param-value>false</param-value> -->
+<!-- 	</context-param> -->
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>vaadinApp1</servlet-name> -->
+<!-- 		<servlet-class>com.vaadin.terminal.gwt.server.GAEApplicationServlet</servlet-class> -->
+<!-- 		<init-param> -->
+<!-- 			<description> -->
+<!-- 			Vaadin application class to start</description> -->
+<!-- 			<param-name>application</param-name> -->
+<!-- 			<param-value>org.sgx.madrenecesidad.MadrenecesidadVaadinApp1</param-value> -->
+<!-- 		</init-param> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>vaadinApp1</servlet-name> -->
+<!-- 		<url-pattern>/vaadinapp1/*</url-pattern> -->
+<!-- 	</servlet-mapping> -->
+
+
+
+</web-app>

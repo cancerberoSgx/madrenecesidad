@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @author: sgurin 
+edit gwt.sdk property in build.properties according to your system and then perform ant 
+-->
+<project name="madrenecesidad" default="compile">
+
+	<property file="build.properties"/>
+	<description>
+        ant bild file for project yuigalleryExplorer
+		@author: sgurin
+    </description>
+
+	
+	<target name="all">
+		<antcall target="clean"/>
+		<antcall target="compile"/>
+	</target>
+	
+	<target name="compile" depends="clean, installdeps">
+		<antcall target="javac">
+		</antcall>
+		<antcall target="gwtc">
+			<param name="moduleName" value="org.sgx.madrenecesidad.Appenginetest1"/>
+		</antcall>
+	</target>	
+	
+		
+	<target name="clean" depends="">
+		<delete dir="dist"/>
+		<delete dir="gwt-unitCache"/>
+		<delete dir="war/WEB-INF/deploy"/>
+		<delete dir="war/WEB-INF/classes"/>
+		<delete dir="appenginetest1"/>
+		<delete dir="www-test"/>
+		<delete dir="classes"/>
+	</target>
+	
+		
+	<target name="installdeps">
+		<copy file="${yuigwt.jar}" todir="war/WEB-INF/lib"></copy>
+	</target>
+	
+	<path id="javac.class.path">
+		<pathelement location="${gwt.sdk}/gwt-user.jar" />
+		<fileset dir="${gwt.sdk}" includes="gwt-dev*.jar" />
+		<fileset dir="war/WEB-INF/lib" includes="**/*.jar" />
+	</path>
+	
+	<target name="javac">	
+<!-- 	<target name="installdeps"> -->
+<!-- 		<copy file="${raphael4gwt.jar}" todir="war/WEB-INF/lib"></copy> -->
+<!-- 		<copy file="${org.sgx.editors.jar}" todir="war/WEB-INF/lib"></copy> -->
+<!-- 	</target> -->
+		<mkdir dir="classes"/>
+		<javac srcdir="src"
+	         destdir="classes"
+	         classpathref="javac.class.path">			
+			<compilerarg line="-encoding utf-8"/>			
+		</javac>
+	</target>
+	
+	
+
+	
+	<path id="gwtc.class.path">
+		<!--<pathelement location="${gwt.sdk}/gwt-user.jar" />-->
+		<pathelement location="classes" />
+		<fileset dir="${gwt.sdk}" includes="**/*.jar" />
+		<fileset dir="war/WEB-INF/lib" includes="**/*.jar" />
+	</path>
+
+	<target name="gwtc" description="individual GWT compile to JavaScript">
+		<java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+			<classpath>
+				<pathelement location="src" />
+				<path refid="gwtc.class.path" />				
+			</classpath>
+			
+			<jvmarg value="-Xmx256M" />	
+			
+			<arg value="-strict"></arg>
+			
+			<!-- Additional arguments like -style PRETTY or -logLevel DEBUG 		
+			<arg value="-draftCompile"></arg>			
+			<arg value="-style"></arg>
+			<arg value="DETAILED"></arg>-->
+			
+			<arg value="-war" />
+			<arg value="war" />
+								
+			<arg value="${moduleName}" />			
+		</java>
+	</target>
+	
+
+</project>

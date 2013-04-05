@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="org/sgx/madrenecesidad/client/trash/" kind="src" path="src"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/objectify-4.0a4.jar" sourcepath="/home/sebastian/Desktop/javadoc"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-ajaxloader.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/home/sebastian/programas/appengine-java-sdk-1.7.1/lib/testing/appengine-testing.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GWT-Maps-V3-Api"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gwtjsutil"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>

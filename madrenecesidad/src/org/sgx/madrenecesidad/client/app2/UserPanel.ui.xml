@@ -1,0 +1,59 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+	<ui:style>
+		
+	</ui:style>
+	<div>
+	    
+	    <span ui:field="loggedInPanel">
+	        
+	        <a href="#" id="drop3" role="button" class="dropdown-toggle" 
+	            data-toggle="dropdown"><span ui:field="userName"></span> <b class="caret"></b></a>
+             <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+               <li role="presentation" class="divider"></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+             </ul>
+                      
+                      
+<!-- 	            <span class="dropdown"> -->
+<!--     <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel"> -->
+<!--     <li><a tabindex="-1" href="#">Action</a></li> -->
+<!--     <li><a tabindex="-1" href="#">Another action</a></li> -->
+<!--     <li><a tabindex="-1" href="#">Something else here</a></li> -->
+<!--     <li class="divider"></li> -->
+<!--     <li><a tabindex="-1" href="#">Separated link</a></li> -->
+<!--     </ul> -->
+<!--     </span> -->
+<!-- 	          	         -->
+	    </span>
+	    
+	    
+	    <span ui:field="notLoggedInPanel">
+	        
+	         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Guess <b class="caret"></b></a>
+	         <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ui:field="loginAnchor">Login</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+               <li role="presentation" class="divider"></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+             </ul>
+             
+<!--      <span class="dropdown"> -->
+<!--     <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel"> -->
+<!--     <li><a tabindex="-1" href="#">Action</a></li> -->
+<!--     <li><a tabindex="-1" href="#">Another action</a></li> -->
+<!--     <li><a tabindex="-1" href="#">Something else here</a></li> -->
+<!--     <li class="divider"></li> -->
+<!--     <li><a tabindex="-1" href="#">Separated link</a></li> -->
+<!--     </ul> -->
+<!--     </span> -->
+<!-- 	        <a href="" ui:field="loginAnchor">Login</a>	   -->
+	        
+	        
+	    </span>
+	</div>
+</ui:UiBinder>

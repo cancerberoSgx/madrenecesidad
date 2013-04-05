@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="appenginetest1" >
+
+    <inherits name='com.google.gwt.user.User' />
+    
+    <!-- <inherits name='com.google.gwt.user.theme.clean.Clean'/> -->
+
+    <inherits name="com.google.gwt.maps.Maps" />
+
+    <inherits name="com.googlecode.objectify.Objectify" />
+    
+<!--     <inherits name="com.github.gwtbootstrap.Bootstrap" /> -->
+    
+    <inherits name="org.sgx.jsutil.JsUtil" />
+    
+
+    <!--<inherits name="org.sgx.yuigwt.YuiGwtYuiGallery" />-->
+<!--     <inherits name="org.sgx.yuigwt.YuiGwt" /> -->
+
+    <!-- load yui.js from yahooapis -->
+
+<!--     <script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js" /> -->
+    <!-- <script src='http://yui.yahooapis.com/3.8.0pr2/build/yui/yui-min.js' /> -->
+
+    <script src="http://maps.google.com/maps/api/js?libraries=places&amp;sensor=false" />
+    
+    <source path="client" />
+
+    <source path="shared" />
+    
+    <public path="public"></public>
+
+<!--     <entry-point class="org.sgx.madrenecesidad.client.Appenginetest1" /> -->
+    <entry-point class="org.sgx.madrenecesidad.client.MadreNecesidad" />
+
+</module>

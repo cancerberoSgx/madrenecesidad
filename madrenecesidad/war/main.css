@@ -1,0 +1,9 @@
+.formTable td {
+	padding: 10px; 
+}
+
+
+.link-button {
+	text-decoration: underline; 
+	cursor: pointer;
+}

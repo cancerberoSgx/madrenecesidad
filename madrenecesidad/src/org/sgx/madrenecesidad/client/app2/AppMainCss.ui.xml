@@ -1,0 +1,38 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+	<ui:style>
+		
+	</ui:style>
+	
+		<style type="text/css">
+#banner {
+	padding: 0;
+	margin: 0; 
+}
+#banner .userPanelContainer {
+margin-right: 20px;
+} 
+.actionsMenu { 
+	margin-top: 14px;
+	text-align: center;
+}
+.body, .sidebar {
+	padding-top: 2.5em;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+}
+.mainTitle {
+	font-size: 1.4em;
+	font-weight:  bold; 
+	display: inline;
+	margin: 0.2em;
+	padding: 0.2em;
+}
+.container-fluid {
+	padding: 0;
+}
+		</style>
+</ui:UiBinder>
