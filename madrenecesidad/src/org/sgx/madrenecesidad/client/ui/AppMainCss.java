@@ -1,4 +1,4 @@
-package org.sgx.madrenecesidad.client.app2;
+package org.sgx.madrenecesidad.client.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;

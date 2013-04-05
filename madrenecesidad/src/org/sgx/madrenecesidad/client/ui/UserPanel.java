@@ -1,4 +1,4 @@
-package org.sgx.madrenecesidad.client.app2;
+package org.sgx.madrenecesidad.client.ui;
 
 import org.sgx.madrenecesidad.client.UserInfo;
 import org.sgx.madrenecesidad.client.util.MNUtil;

@@ -1,0 +1,31 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+	<ui:style>
+
+	</ui:style>
+	<div class="actionsMenu">
+
+		<span class="btn-group ">
+			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				Actions
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				<li>
+					<a tabindex="-1" href="#" ui:field="actionSearchAddressAnchor">Search Address</a>
+				</li>
+				<li>
+					<a tabindex="-1" href="#" ui:field="actionMeasureDistanceAnchor">Measure distance</a>
+				</li>
+				<li>
+					<a tabindex="-1" href="#">Something else here</a>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<a tabindex="-1" href="#">Separated link</a>
+				</li>
+			</ul>
+		</span>
+
+	</div>
+</ui:UiBinder>

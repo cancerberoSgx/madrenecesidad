@@ -1,8 +1,11 @@
-package org.sgx.madrenecesidad.client.app2;
+package org.sgx.madrenecesidad.client.ui;
 
 import java.util.ArrayList;
 
+import org.sgx.jsutil.client.SimpleCallback;
+import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.model.MapView;
+import org.sgx.madrenecesidad.client.util.bootstrap.Bootstrap;
 import org.sgx.madrenecesidad.client.util.gmapsmissingapi.PlaceSearchTypes;
 
 import com.google.gwt.core.client.GWT;
@@ -33,6 +36,7 @@ import com.google.gwt.maps.client.placeslib.PlacesServiceStatus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.UIObject;
 
 public class AppMain extends UIObject {
@@ -43,7 +47,7 @@ public class AppMain extends UIObject {
 	}
 
 	@UiField
-	Element mainMapContainer, userPanelEl, actionPanelEl;
+	Element mainMapContainer, userPanelEl, actionPanelEl, statusText;
 	private MapWidget mapWidget;
 
 	public AppMain() {
@@ -52,8 +56,17 @@ public class AppMain extends UIObject {
 		Document.get().getBody().appendChild(new AppMainCss().getElement());
 		userPanelEl.appendChild(new UserPanel().getElement()); 
 		actionPanelEl.appendChild(new ActionPanel().getElement());
+		MNMain.getInstance().addAfterAttachListener(new SimpleCallback() {			
+			@Override
+			public void call() {
+				Bootstrap.dropdown(".dropdown-toggle"); 
+			}
+		}); 
 	}
 
+	public MapWidget getMapWidget() {
+		return mapWidget;
+	}
 	private void loadMapApi() {
 		boolean sensor = true;
 
@@ -76,6 +89,19 @@ public class AppMain extends UIObject {
 		
 		LoadApi.go(onLoad, loadLibraries, sensor);
 	}
+	
+	/**
+	 * 
+	 * @param text
+	 * @param type one of "muted", "text-warning", "text-error", "text-info", "text-success"
+	 */
+	public void setStatusText(String text, String type) {
+		if(type==null||type.equals(""))
+			type="text-info"; 
+		statusText.setInnerText(text); 
+		statusText.setClassName(type);
+		
+	}
 
 	private void drawMap() {
 		LatLng center = LatLng.newInstance(40.46387840039735, -3.735442161560054);
@@ -84,26 +110,26 @@ public class AppMain extends UIObject {
 		mapOpts.setZoom(10);
 		mapOpts.setCenter(center);
 		mapWidget = new MapWidget(mapOpts);
-		mapWidget.addCenterChangeHandler(new CenterChangeMapHandler() {
-			@Override
-			public void onEvent(CenterChangeMapEvent event) {
-				// TODO Auto-generated method stub
-
-			}
-		});
+//		mapWidget.addCenterChangeHandler(new CenterChangeMapHandler() {
+//			@Override
+//			public void onEvent(CenterChangeMapEvent event) {
+//				// TODO Auto-generated method stub
+//
+//			}
+//		});
 		// mapWidget.addMapTypeIdChangeHandler(new MapTypeIdChangeMapHandler() {
 		// @Override
 		// public void onEvent(MapTypeIdChangeMapEvent event) {
 		// Window.alert(mapWidget.getMapTypeId().value());
 		// }
 		// });
-		mapWidget.addClickHandler(new ClickMapHandler() {
-			@Override
-			public void onEvent(ClickMapEvent event) {
-//				Window.alert(event.getMouseEvent().getLatLng() + " lang");
-				gmapClicked(event); 
-			}
-		});
+//		mapWidget.addClickHandler(new ClickMapHandler() {
+//			@Override
+//			public void onEvent(ClickMapEvent event) {
+////				Window.alert(event.getMouseEvent().getLatLng() + " lang");
+//				gmapClicked(event); 
+//			}
+//		});
 
 		// mapWidget.setOptions(opts); //.setCenter(latlng)
 		mainMapContainer.appendChild(mapWidget.getElement());
@@ -112,40 +138,40 @@ public class AppMain extends UIObject {
 		mapWidget.setSize("100%", "400px");
 	}
 
-	protected void gmapClicked(ClickMapEvent event) {
-//		 Window.alert("zoom: " + mapWidget.getZoom()+ ", LatLng: " + mapWidget.getCenter()); 
-
-		LatLng clickLocation = event.getMouseEvent().getLatLng();
-		
-		MarkerOptions opts = MarkerOptions.newInstance();
-//		opts.setClickable(true);
-//		opts.setDraggable(true);
-		opts.setMap(mapWidget); 
-		opts.setTitle("hello!"); 
-		opts.setPosition(clickLocation); 
-		Marker marker1 = Marker.newInstance(opts);// event.getMouseEvent().getLatLng(), markerOpts);
-		marker1.addClickHandler(new ClickMapHandler() {
-			@Override
-			public void onEvent(ClickMapEvent event) {
-				// Marker m = event.getSource().cast();
-				Window.alert("marker clicked: " + event.getSource());
-			}
-		});
-		
-//		PlaceSearchRequest req = PlaceSearchRequest.newInstance();
-//		req.setLocation(clickLocation);
-//		req.setRaidus(50000);
-//		req.setTypes(PlaceSearchTypes.embassy);
-//		// gmap1=mapWidget.getm
-//		PlacesService placeService = PlacesService.newInstance(mapWidget); // gmap1.newPlacesService(); //PlacesService.newInstance(ma);
-//		placeService.search(req, new PlaceSearchHandler() {
+//	protected void gmapClicked(ClickMapEvent event) {
+////		 Window.alert("zoom: " + mapWidget.getZoom()+ ", LatLng: " + mapWidget.getCenter()); 
+//
+//		LatLng clickLocation = event.getMouseEvent().getLatLng();
+//		
+//		MarkerOptions opts = MarkerOptions.newInstance();
+////		opts.setClickable(true);
+////		opts.setDraggable(true);
+//		opts.setMap(mapWidget); 
+//		opts.setTitle("hello!"); 
+//		opts.setPosition(clickLocation); 
+//		Marker marker1 = Marker.newInstance(opts);// event.getMouseEvent().getLatLng(), markerOpts);
+//		marker1.addClickHandler(new ClickMapHandler() {
 //			@Override
-//			public void onCallback(JsArray<PlaceResult> results, PlacesServiceStatus status) {
-//				Window.alert("embassies found in the area : " + results.length());
-//				for (int i = 0; i < results.length(); i++) {
-//					PlaceResult result = results.get(i);
-//				}
+//			public void onEvent(ClickMapEvent event) {
+//				// Marker m = event.getSource().cast();
+//				Window.alert("marker clicked: " + event.getSource());
 //			}
 //		});
-	}
+//		
+////		PlaceSearchRequest req = PlaceSearchRequest.newInstance();
+////		req.setLocation(clickLocation);
+////		req.setRaidus(50000);
+////		req.setTypes(PlaceSearchTypes.embassy);
+////		// gmap1=mapWidget.getm
+////		PlacesService placeService = PlacesService.newInstance(mapWidget); // gmap1.newPlacesService(); //PlacesService.newInstance(ma);
+////		placeService.search(req, new PlaceSearchHandler() {
+////			@Override
+////			public void onCallback(JsArray<PlaceResult> results, PlacesServiceStatus status) {
+////				Window.alert("embassies found in the area : " + results.length());
+////				for (int i = 0; i < results.length(); i++) {
+////					PlaceResult result = results.get(i);
+////				}
+////			}
+////		});
+//	}
 }
