@@ -49,19 +49,24 @@ public class AppMain extends UIObject {
 	@UiField
 	Element mainMapContainer, userPanelEl, actionPanelEl, statusText;
 	private MapWidget mapWidget;
+	private ActionPanel actionPanel;
 
 	public AppMain() {
 		setElement(uiBinder.createAndBindUi(this));
 		loadMapApi();
 		Document.get().getBody().appendChild(new AppMainCss().getElement());
 		userPanelEl.appendChild(new UserPanel().getElement()); 
-		actionPanelEl.appendChild(new ActionPanel().getElement());
+		actionPanel=new ActionPanel();
+		actionPanelEl.appendChild(actionPanel.getElement());
 		MNMain.getInstance().addAfterAttachListener(new SimpleCallback() {			
 			@Override
 			public void call() {
 				Bootstrap.dropdown(".dropdown-toggle"); 
 			}
 		}); 
+	}
+	public ActionPanel getActionPanel() {
+		return this.actionPanel; 
 	}
 
 	public MapWidget getMapWidget() {
@@ -108,6 +113,7 @@ public class AppMain extends UIObject {
 		MapOptions mapOpts = MapOptions.newInstance();
 		mapOpts.setMapTypeId(MapTypeId.ROADMAP);
 		mapOpts.setZoom(10);
+		mapOpts.setScaleControl(true);
 		mapOpts.setCenter(center);
 		mapWidget = new MapWidget(mapOpts);
 //		mapWidget.addCenterChangeHandler(new CenterChangeMapHandler() {

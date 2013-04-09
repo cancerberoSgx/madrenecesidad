@@ -10,4 +10,8 @@ public class Bootstrap {
 	public static final native void dropdown(Element e)/*-{
 		$wnd.$(e).dropdown();
 	}-*/;
+	
+	public static final native void modal(Element e)/*-{
+		$wnd.$(e).modal();
+	}-*/;
 }

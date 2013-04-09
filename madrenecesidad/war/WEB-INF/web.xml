@@ -70,7 +70,7 @@
   
   
 	<welcome-file-list>
-		<welcome-file>index_bootstrap.jsp.html</welcome-file>
+		<welcome-file>index_bootstrap.jsp</welcome-file>
 	</welcome-file-list>
 	
 	

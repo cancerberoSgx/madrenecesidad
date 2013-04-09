@@ -12,20 +12,97 @@
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 				<li>
+					<a tabindex="-1" href="#">Add Place</a>
+				</li>
+				
+				<li>
+					<a tabindex="-1" href="#">My Places</a>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<a tabindex="-1" href="#">My Maps</a>
+				</li>
+			</ul>
+		</span>
+		
+		<span class="btn-group ">
+			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				Tools
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				<li>
 					<a tabindex="-1" href="#" ui:field="actionSearchAddressAnchor">Search Address</a>
 				</li>
 				<li>
 					<a tabindex="-1" href="#" ui:field="actionMeasureDistanceAnchor">Measure distance</a>
 				</li>
+				
 				<li>
-					<a tabindex="-1" href="#">Something else here</a>
+					<a tabindex="-1" href="#" ui:field="toolDirectionsAnchor">Directions</a>
 				</li>
+				
+<!-- 				<li> -->
+<!-- 					<a tabindex="-1" href="#" ui:field="actionMeasureDistanceAnchor">Measure distance</a> -->
+<!-- 				</li> -->
 				<li class="divider"></li>
 				<li>
 					<a tabindex="-1" href="#">Separated link</a>
 				</li>
 			</ul>
 		</span>
+		
+		<span class="btn-group ">
+			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				Map Layers
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				<li>
+				<a tabindex="-1" href="#" >
+				 <label class="checkbox">
+					<input type="checkbox" ui:field="layerTrafficCheck"> </input> Traffic
+					</label>
+					</a>
+				</li>
+				
+				<li>
+				<a tabindex="-1" href="#" >
+				 <label class="checkbox">
+					<input type="checkbox" ui:field="layerTransitCheck"> </input> Transit
+					</label>
+					</a>
+				</li>
+				
+				<li>
+				<a tabindex="-1" href="#" >
+				 <label class="checkbox">
+					<input type="checkbox" ui:field="layerBicyclingCheck"> </input> Bicycling
+					</label>
+					</a>
+				</li>
+				
+				<li>
+				<a tabindex="-1" href="#" >
+				 <label class="checkbox">
+					<input type="checkbox" ui:field="layerCloudCheck"> </input> Weather and Clouds
+					</label>
+					</a>
+				</li>
+				
+				<li>
+				<a tabindex="-1" href="#" >
+				 <label class="checkbox">
+					<input type="checkbox" ui:field="layerPanoramioCheck"> </input> Panoramio
+					</label>
+					</a>
+				</li>
+				
+			</ul>
+		</span>
+		
+		<div ui:field="actionOptionPanelEl">
+		</div>
 
 	</div>
 </ui:UiBinder>
