@@ -82,7 +82,6 @@ public class DirectionsAction implements Action {
 		req.setDestination(dest); 
 		req.setTravelMode(TravelMode.WALKING); 
 		
-		
 		ds.route(req, new DirectionsResultHandler() {			
 			@Override
 			public void onCallback(DirectionsResult result, DirectionsStatus status) {
@@ -107,20 +106,21 @@ public class DirectionsAction implements Action {
 						}
 					}
 				}
-				
 
 				PolylineOptions popts = PolylineOptions.newInstance(); 
 				popts.setPath(polyPath); 
 				Polyline line = Polyline.newInstance(popts); 
 				line.setMap(MNMain.getInstance().getLayout().getMapWidget()); 
 				
-				
-//				Window.alert(s);
 				ui.getModalBody().setInnerHTML("<h3>Instructions</h3>"+s); 
-				Bootstrap.modal(ui.getModal()); 
-				
+				Bootstrap.modal(ui.getModal()); 				
 			}
 		}); 
+	}
+	@Override
+	public void uninstall() {
+		if(clickHandler!=null)
+			clickHandler.removeHandler();
 	}
 
 }

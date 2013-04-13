@@ -51,4 +51,10 @@ public class SearchAddressAction implements Action{
 		}); 
 	}
 
+	@Override
+	public void uninstall() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

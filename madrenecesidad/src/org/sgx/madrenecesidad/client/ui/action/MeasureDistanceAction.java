@@ -41,5 +41,10 @@ public class MeasureDistanceAction implements Action {
 		double d = SphericalUtils.computeDistanceBetween(pos1, pos2); 
 		Window.alert("distance between two points is: "+d+" meters"); 
 	}
+	@Override
+	public void uninstall() {
+		if(clickHandler!=null)
+			clickHandler.removeHandler(); 
+	}
 
 }

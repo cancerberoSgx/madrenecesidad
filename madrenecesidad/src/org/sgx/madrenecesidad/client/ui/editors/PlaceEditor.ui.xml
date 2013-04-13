@@ -1,0 +1,37 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+
+	</ui:style>
+	<g:HTMLPanel>
+
+		<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label">Name</label>
+				<div class="controls">
+					<input type="text" ui:field="nameEntry" placeholder="Some place name..."></input>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Description</label>
+				<div class="controls">
+					<textarea type="text" ui:field="descriptionEntry">Some description for the place</textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Position</label>
+				<div class="controls">
+					<input type="text" ui:field="positionEntry" placeholder="0.0,0.0"></input>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<label class="checkbox">
+						<input type="checkbox" checked="true"></input>
+						Public
+					</label>
+				</div>
+			</div>
+		</form>
+	</g:HTMLPanel>
+</ui:UiBinder> 
