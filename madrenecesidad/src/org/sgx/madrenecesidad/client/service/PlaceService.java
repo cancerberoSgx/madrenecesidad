@@ -11,13 +11,15 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("placeService")
 public interface PlaceService extends RemoteService {
-	public void addPlace(Place p); 
+	public Long addPlace(Place p); 
 	public void deletePlace(Place ch); 
 	public List<Place> getAllPlaces();
 	List<Place> getOwnerPlaces(); 
 //	List<Channel> getChanels(); 
 //	Channel getChannelByName(String name);
 	List<Place> searchPlace(String nameFragment);
+	List<Place> searchPlace(String nameFragment, int maxSize, int page);
+	
 //	void cleanAll();
 //	List<Tag> getTags(Channel c);
 	

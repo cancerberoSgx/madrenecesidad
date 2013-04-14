@@ -2,6 +2,7 @@ package org.sgx.madrenecesidad.client.ui.editors;
 
 import org.sgx.madrenecesidad.client.model.Place;
 
+import com.google.appengine.api.datastore.GeoPt;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.dom.client.TextAreaElement;
@@ -21,13 +22,18 @@ public class PlaceEditor extends Composite implements MNEditor<Place>{
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
-	@UiField InputElement nameEntry, positionEntry; 
+	@UiField InputElement nameEntry, positionLatEntry, positionLongEntry; 
 	@UiField TextAreaElement descriptionEntry; 
 	
 	@Override
 	public Place flush() {
 		Place p = new Place(); 
 		p.setName(nameEntry.getValue()); 
+		p.setDescription(descriptionEntry.getValue()); 
+		p.setCenter(new GeoPt(
+			Float.parseFloat(positionLatEntry.getValue()), 
+			Float.parseFloat(positionLongEntry.getValue())
+		)); 
 		return p;
 	}
 
@@ -35,7 +41,8 @@ public class PlaceEditor extends Composite implements MNEditor<Place>{
 	public void load(Place t) {
 		nameEntry.setValue(t.getName()); 
 		descriptionEntry.setValue(t.getDescription()); 
-		positionEntry.setValue(t.getCenter().toString()); 
+		positionLatEntry.setValue(t.getCenter().getLatitude()+""); 
+		positionLongEntry.setValue(t.getCenter().getLongitude()+"");
 	}
 
 }

@@ -41,15 +41,15 @@
   </servlet-mapping>
   
   
-  <!--   MapView -->
+  <!--   Place -->
   
    <servlet>
-    <servlet-name>mapViewService</servlet-name>
+    <servlet-name>placeService</servlet-name>
     <servlet-class>org.sgx.madrenecesidad.server.PlaceServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>mapViewService</servlet-name>
+    <servlet-name>placeService</servlet-name>
     <url-pattern>/appenginetest1/placeService</url-pattern>
   </servlet-mapping>
   

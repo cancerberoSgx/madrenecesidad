@@ -2,9 +2,11 @@ package org.sgx.madrenecesidad.client.ui;
 
 import java.util.ArrayList;
 
+import org.sgx.jsutil.client.DOMUtil;
 import org.sgx.jsutil.client.SimpleCallback;
 import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.model.MapView;
+import org.sgx.madrenecesidad.client.ui.help.AboutTheAuthor;
 import org.sgx.madrenecesidad.client.util.bootstrap.Bootstrap;
 import org.sgx.madrenecesidad.client.util.gmapsmissingapi.PlaceSearchTypes;
 
@@ -35,6 +37,7 @@ import com.google.gwt.maps.client.placeslib.PlacesService;
 import com.google.gwt.maps.client.placeslib.PlacesServiceStatus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.UIObject;
@@ -47,7 +50,8 @@ public class AppMain extends UIObject {
 	}
 
 	@UiField
-	Element mainMapContainer, userPanelEl, actionPanelEl, statusText;
+	Element mainMapContainer, userPanelEl, actionPanelEl, statusText, 
+	helpAboutTheAuthor;
 	private MapWidget mapWidget;
 	private ActionPanel actionPanel;
 
@@ -64,6 +68,13 @@ public class AppMain extends UIObject {
 				Bootstrap.dropdown(".dropdown-toggle"); 
 			}
 		}); 
+		
+		DOMUtil.addClickHandler(helpAboutTheAuthor, new DOMUtil.EventHandler() {
+			@Override
+			public void onEvent(Event event) {
+				new AboutTheAuthor(Document.get().getBody()); 
+			}
+		});
 	}
 	public ActionPanel getActionPanel() {
 		return this.actionPanel; 
@@ -83,7 +94,7 @@ public class AppMain extends UIObject {
 		loadLibraries.add(LoadLibrary.PANORAMIO);
 		loadLibraries.add(LoadLibrary.PLACES);
 		loadLibraries.add(LoadLibrary.WEATHER);
-		// loadLibraries.add(LoadLibrary.VISUALIZATION);
+		 loadLibraries.add(LoadLibrary.VISUALIZATION);
 
 		Runnable onLoad = new Runnable() {
 			@Override
@@ -105,7 +116,6 @@ public class AppMain extends UIObject {
 			type="text-info"; 
 		statusText.setInnerText(text); 
 		statusText.setClassName(type);
-		
 	}
 
 	private void drawMap() {
@@ -113,7 +123,7 @@ public class AppMain extends UIObject {
 		MapOptions mapOpts = MapOptions.newInstance();
 		mapOpts.setMapTypeId(MapTypeId.ROADMAP);
 		mapOpts.setZoom(10);
-		mapOpts.setScaleControl(true);
+//		mapOpts.setScaleControl(true);
 		mapOpts.setCenter(center);
 		mapWidget = new MapWidget(mapOpts);
 //		mapWidget.addCenterChangeHandler(new CenterChangeMapHandler() {

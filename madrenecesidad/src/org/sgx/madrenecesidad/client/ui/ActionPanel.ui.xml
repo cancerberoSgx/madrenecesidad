@@ -1,11 +1,17 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
 	<ui:style>
-
+.actionOptionPanel {
+margin-top: 10px;
+}
+.group, .group > a {
+width: 100%; 
+padding: 2px 4px; 
+}
 	</ui:style>
 	<div class="actionsMenu">
-
-		<span class="btn-group ">
+	
+		<span class="btn-group {style.group}">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 				Actions
 				<span class="caret"></span>
@@ -14,18 +20,24 @@
 				<li>
 					<a tabindex="-1" href="#" ui:field="actionAddPlaceAnchor">Add Place</a>
 				</li>
-				
+				<li>
+					<a tabindex="-1" href="#" ui:field="actionSearchPlaceAnchor">Add Place</a>
+				</li>
 				<li>
 					<a tabindex="-1" href="#">My Places</a>
 				</li>
 				<li class="divider"></li>
 				<li>
-					<a tabindex="-1" href="#">My Maps</a>
+					<a tabindex="-1" href="#" ui:field="actionAddMapView">Add Map View</a>
+				</li>
+				<li>
+					<a tabindex="-1" href="#">My Map Views</a>
 				</li>
 			</ul>
 		</span>
-		
-		<span class="btn-group ">
+		<br/>
+
+		<span class="btn-group {style.group}">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 				Tools
 				<span class="caret"></span>
@@ -36,109 +48,127 @@
 				</li>
 				<li>
 					<a tabindex="-1" href="#" ui:field="actionMeasureDistanceAnchor">Measure distance</a>
-				</li>				
+				</li>
 				<li>
 					<a tabindex="-1" href="#" ui:field="toolDirectionsAnchor">Directions</a>
-				</li>	
+				</li>
 				<li>
 					<a tabindex="-1" href="#" ui:field="toolElevationAnchor">Elevation</a>
-				</li>	
+				</li>
 				<li class="divider"></li>
 				<li>
 					<a tabindex="-1" href="#">Separated link</a>
 				</li>
 			</ul>
 		</span>
-		
-		
-		<span class="btn-group ">
+<br/>
+
+		<span class="btn-group {style.group}">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 				Map Layers
 				<span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 				<li>
-				<a tabindex="-1" href="#" >
-				 <label class="checkbox">
-					<input type="checkbox" ui:field="layerTrafficCheck"> </input> Traffic
-					</label>
+					<a tabindex="-1" href="#">
+						<label class="checkbox">
+							<input type="checkbox" ui:field="layerTrafficCheck">
+							</input>
+							Traffic
+						</label>
 					</a>
-				</li>				
+				</li>
 				<li>
-				<a tabindex="-1" href="#" >
-				 <label class="checkbox">
-					<input type="checkbox" ui:field="layerTransitCheck"> </input> Transit
-					</label>
+					<a tabindex="-1" href="#">
+						<label class="checkbox">
+							<input type="checkbox" ui:field="layerTransitCheck">
+							</input>
+							Transit
+						</label>
 					</a>
-				</li>				
+				</li>
 				<li>
-				<a tabindex="-1" href="#" >
-				 <label class="checkbox">
-					<input type="checkbox" ui:field="layerBicyclingCheck"> </input> Bicycling
-					</label>
+					<a tabindex="-1" href="#">
+						<label class="checkbox">
+							<input type="checkbox" ui:field="layerBicyclingCheck">
+							</input>
+							Bicycling
+						</label>
 					</a>
-				</li>				
+				</li>
 				<li>
-				<a tabindex="-1" href="#" >
-				 <label class="checkbox">
-					<input type="checkbox" ui:field="layerCloudCheck"> </input> Weather and Clouds
-					</label>
+					<a tabindex="-1" href="#">
+						<label class="checkbox">
+							<input type="checkbox" ui:field="layerCloudCheck">
+							</input>
+							Weather and Clouds
+						</label>
 					</a>
-				</li>				
+				</li>
 				<li>
-				<a tabindex="-1" href="#" >
-				 <label class="checkbox">
-					<input type="checkbox" ui:field="layerPanoramioCheck"> </input> Panoramio
-					</label>
+					<a tabindex="-1" href="#">
+						<label class="checkbox">
+							<input type="checkbox" ui:field="layerPanoramioCheck">
+							</input>
+							Panoramio
+						</label>
 					</a>
-				</li>				
+				</li>
 			</ul>
 		</span>
-		
-		
-		
-		<span class="btn-group ">
+<br/>
+
+
+		<span class="btn-group {style.group}">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 				Map Type
 				<span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 				<li>
-				<a tabindex="-1" href="#" >
-				 <label class="checkbox">
-					<input type="radio" name="groupMapType" ui:field="mapTypeRoadmapAnchor"> </input> Roadmap
-					</label>
+					<a tabindex="-1" href="#">
+						<label class="checkbox">
+							<input type="radio" name="groupMapType" checked="true" ui:field="mapTypeRoadmapAnchor">
+							</input>
+							Roadmap
+						</label>
 					</a>
 				</li>
-				
+
 				<li>
-				<a tabindex="-1" href="#" >
-				 <label class="checkbox">
-					<input type="radio" name="groupMapType" ui:field="mapTypeSatelliteAnchor"> </input> Satellite
-					</label>
+					<a tabindex="-1" href="#">
+						<label class="checkbox">
+							<input type="radio" name="groupMapType" ui:field="mapTypeSatelliteAnchor">
+							</input>
+							Satellite
+						</label>
 					</a>
 				</li>
-				
+
 				<li>
-				<a tabindex="-1" href="#" >
-				 <label class="checkbox">
-					<input type="radio" name="groupMapType" ui:field="mapTypeHybridAnchor"> </input> Hybrid
-					</label>
+					<a tabindex="-1" href="#">
+						<label class="checkbox">
+							<input type="radio" name="groupMapType" ui:field="mapTypeHybridAnchor">
+							</input>
+							Hybrid
+						</label>
 					</a>
 				</li>
-				
+
 				<li>
-				<a tabindex="-1" href="#" >
-				 <label class="checkbox">
-					<input type="radio" name="groupMapType" ui:field="mapTypeTerrainAnchor"> </input> Terrain
-					</label>
+					<a tabindex="-1" href="#">
+						<label class="checkbox">
+							<input type="radio" name="groupMapType" ui:field="mapTypeTerrainAnchor">
+							</input>
+							Terrain
+						</label>
 					</a>
 				</li>
-				
+
 			</ul>
 		</span>
-		
-		<div ui:field="actionOptionPanelEl">
+<br/>
+		<div ui:field="actionOptionPanelEl" class="{style.actionOptionPanel}">
 		</div>
 
 	</div>

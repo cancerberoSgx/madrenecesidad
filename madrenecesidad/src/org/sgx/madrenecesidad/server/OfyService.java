@@ -4,6 +4,7 @@ package org.sgx.madrenecesidad.server;
 import org.sgx.madrenecesidad.client.MNConstants;
 import org.sgx.madrenecesidad.client.model.Channel;
 import org.sgx.madrenecesidad.client.model.MapView;
+import org.sgx.madrenecesidad.client.model.Place;
 import org.sgx.madrenecesidad.client.model.Tag;
 import org.sgx.madrenecesidad.client.model.User;
 
@@ -12,9 +13,10 @@ import com.googlecode.objectify.*;
 
 public class OfyService {
     static {
-        factory().register(Tag.class);
-        factory().register(Channel.class);
+//        factory().register(Tag.class);
+//        factory().register(Channel.class);
         factory().register(MapView.class);
+        factory().register(Place.class);
 //        factory().register(User.class);
 //        factory().register(User.class);
         

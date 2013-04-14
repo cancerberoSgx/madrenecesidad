@@ -1,12 +1,15 @@
-for deploy: edit MNConstants.develMode = false; 
+madrenecesidad.appspot.com 
 
-an application for personal place administration, search and publishing tools based on 
-google maps and google places. 
+an application for personal place administration, search and publishing tools based on google maps and google places.
+
+madrenecesidad.appspot.com 
 
 2 main modes: 
  - if not logged in only place search usable
  - if logged in the user can define places, places categories, places websites. 
  
+
+for deploy: edit MNConstants.develMode = false;
 
 objectives: 
  - personalized place administrator

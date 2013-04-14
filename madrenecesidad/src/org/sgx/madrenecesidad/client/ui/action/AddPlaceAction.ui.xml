@@ -13,8 +13,8 @@
 			<div class="modal-body" ui:field="modalBody">
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn">Close</a>
-				<a href="#" class="btn btn-primary">Add Place!</a>
+				<a href="#" class="btn" ui:field="closeButton">Close</a>
+				<a href="#" class="btn btn-primary" ui:field="addButton">Add Place!</a>
 			</div>
 		</div>
 		

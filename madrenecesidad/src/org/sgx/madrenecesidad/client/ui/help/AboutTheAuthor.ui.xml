@@ -1,0 +1,24 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+	<ui:style>
+
+	</ui:style>
+
+		<div class="modal hide fade" ui:field="modal">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3>About the author</h3>
+			</div>
+			<div class="modal-body">
+				<p>
+					The author of this application is
+					<a href="http://www.linkedin.com/profile/view?id=75721243">Sebastián Gurin</a>
+					,
+					a software developer with great expertise in web application development, specially using front end
+					technologies.
+				</p>
+				
+				<p><a href="madrenecesidad.appspot.com">MadreNecesidad</a> is an attempt of making an useful web application applying several technologies learned by him like GWT, HTML, CSS, Bootstrap, google maps API.  </p>
+			</div>
+		</div>
+</ui:UiBinder>

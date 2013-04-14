@@ -9,7 +9,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface PlaceServiceAsync {
 
-	void addPlace(Place p, AsyncCallback<Void> callback);
+	void addPlace(Place p, AsyncCallback<Long> callback);
 
 	void deletePlace(Place ch, AsyncCallback<Void> callback);
 
@@ -18,5 +18,7 @@ public interface PlaceServiceAsync {
 	void searchPlace(String nameFragment, AsyncCallback<List<Place>> callback);
 
 	void getOwnerPlaces(AsyncCallback<List<Place>> callback);
+
+	void searchPlace(String nameFragment, int maxSize, int page, AsyncCallback<List<Place>> callback);
 
 }

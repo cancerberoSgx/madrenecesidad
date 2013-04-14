@@ -18,12 +18,22 @@
 					<textarea type="text" ui:field="descriptionEntry">Some description for the place</textarea>
 				</div>
 			</div>
-			<div class="control-group">
+			<!-- <div class="control-group"> -->
+			<!-- <label class="control-label">Position</label> -->
+			<!-- <div class="controls"> -->
+			<!-- <input type="text" ui:field="positionEntry" placeholder="0.0,0.0"></input> -->
+			<!-- </div> -->
+			<!-- </div> -->
+
+			<div class="input-prepend input-append">
 				<label class="control-label">Position</label>
 				<div class="controls">
-					<input type="text" ui:field="positionEntry" placeholder="0.0,0.0"></input>
+					<input class="input-mini" type="text" ui:field="positionLatEntry" placeholder="0.0"></input>
+					<span class="add-on">@</span>
+					<input class="input-mini" type="text" ui:field="positionLongEntry" placeholder="0.0"></input>
 				</div>
 			</div>
+
 			<div class="control-group">
 				<div class="controls">
 					<label class="checkbox">

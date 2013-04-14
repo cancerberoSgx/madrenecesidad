@@ -27,7 +27,8 @@ public class ActionPanel extends UIObject {
 	}
 
 	@UiField
-	Element actionAddPlaceAnchor, actionSearchAddressAnchor, actionMeasureDistanceAnchor, actionOptionPanelEl, 
+	Element actionAddPlaceAnchor, actionSearchPlaceAnchor, 
+	actionSearchAddressAnchor, actionMeasureDistanceAnchor, actionOptionPanelEl, 
 		toolDirectionsAnchor, toolElevationAnchor,
 		mapTypeRoadmapAnchor, mapTypeSatelliteAnchor, mapTypeHybridAnchor, mapTypeTerrainAnchor;
 	
@@ -127,6 +128,13 @@ public class ActionPanel extends UIObject {
 				ActionManager.getInstance().performAction(new AddPlaceAction(), null); 
 			}
 		});
+		DOMUtil.addClickHandler(actionSearchPlaceAnchor, new DOMUtil.EventHandler() {
+			@Override
+			public void onEvent(Event event) {
+				ActionManager.getInstance().performAction(new AddPlaceAction(), null); 
+			}
+		});
+		
 		
 	}
 	

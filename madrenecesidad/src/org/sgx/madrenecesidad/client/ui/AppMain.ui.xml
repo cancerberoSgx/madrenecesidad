@@ -23,9 +23,9 @@
                       <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Help<b class="caret"></b></a>
                       <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                       
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="http://google.com">User Manual</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#anotherAction">About this Application</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About the Author</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" >User Manual</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" >About this Application</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" ui:field="helpAboutTheAuthor">About the Author</a></li>
                         
                         <li role="presentation" class="divider"></li>
                         

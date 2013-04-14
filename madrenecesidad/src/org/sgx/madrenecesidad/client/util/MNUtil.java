@@ -48,6 +48,10 @@ public class MNUtil {
 	public final native static String getCurrentAddressUrl()/*-{
 		return $wnd.document.location.href;
 	}-*/;
+
+	public static boolean isNull(String s) {
+		return s==null||s.equals(""); 
+	}
 	
 	
 //	public static class PlaceAddResult extends JavaScriptObject {
