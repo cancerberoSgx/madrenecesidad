@@ -21,4 +21,8 @@ public interface PlaceServiceAsync {
 
 	void searchPlace(String nameFragment, int maxSize, int page, AsyncCallback<List<Place>> callback);
 
+	void cleanAll(AsyncCallback<Void> callback);
+
+	void getPlaceById(Long placeId, AsyncCallback<Place> callback);
+
 }

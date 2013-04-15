@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.sgx.madrenecesidad.client.MNConstants;
 import org.sgx.madrenecesidad.client.model.Channel;
 import org.sgx.madrenecesidad.client.model.Tag;
 import org.sgx.madrenecesidad.client.service.ChannelService;
@@ -197,6 +198,8 @@ public List<Tag> getTags(Channel c) {
 @Override
 public void cleanAll() {
 	
+	if(!MNConstants.develmode)
+		return;
 //	List<Channel> alltags = ofy().load().type(Channel.class).list();
 //	List<Channel> ret = new LinkedList<Channel>();
 //	for (Channel t : ofy().load().type(Channel.class).list()) {

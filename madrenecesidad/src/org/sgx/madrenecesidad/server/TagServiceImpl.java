@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.sgx.madrenecesidad.client.MNConstants;
 import org.sgx.madrenecesidad.client.model.Channel;
 import org.sgx.madrenecesidad.client.model.Tag;
 import org.sgx.madrenecesidad.client.service.TagService;
@@ -152,15 +153,8 @@ public class TagServiceImpl extends AbstractService implements TagService {
 	
 	@Override
 	public void cleanAll() {
-		
-//		List<Tag> alltags = ofy().load().type(Tag.class).list();
-//		List<Tag> ret = new LinkedList<Tag>();
-//		for (Tag t : alltags) {
-//			ret.add(t);
-//		}
-//		for(Tag t : ret) {
-//			ofy().delete().entity(t).now();
-//		}
+		if(!MNConstants.develmode)
+			return;
 		
 		for(Tag t : getTags()) {
 			deleteTag(t); 

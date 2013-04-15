@@ -13,8 +13,8 @@ import com.googlecode.objectify.*;
 
 public class OfyService {
     static {
-//        factory().register(Tag.class);
-//        factory().register(Channel.class);
+        factory().register(Tag.class);
+        factory().register(Channel.class);
         factory().register(MapView.class);
         factory().register(Place.class);
 //        factory().register(User.class);

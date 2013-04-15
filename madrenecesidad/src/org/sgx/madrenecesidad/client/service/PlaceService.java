@@ -14,11 +14,13 @@ public interface PlaceService extends RemoteService {
 	public Long addPlace(Place p); 
 	public void deletePlace(Place ch); 
 	public List<Place> getAllPlaces();
+	Place getPlaceById(Long placeId);
 	List<Place> getOwnerPlaces(); 
 //	List<Channel> getChanels(); 
 //	Channel getChannelByName(String name);
 	List<Place> searchPlace(String nameFragment);
 	List<Place> searchPlace(String nameFragment, int maxSize, int page);
+	void cleanAll();
 	
 //	void cleanAll();
 //	List<Tag> getTags(Channel c);

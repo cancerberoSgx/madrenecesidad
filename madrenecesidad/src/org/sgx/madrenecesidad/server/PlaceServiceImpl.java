@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.sgx.madrenecesidad.client.MNConstants;
 import org.sgx.madrenecesidad.client.model.Channel;
 import org.sgx.madrenecesidad.client.model.Place;
 import org.sgx.madrenecesidad.client.model.Tag;
@@ -59,10 +60,14 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 
 	@Override
 	public Long addPlace(Place p) {
-		if (MNUtil.isNull(p.getName()))
-			return -1l; // TODO: throw something?
+
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
+
+		// preconditions
+		if (MNUtil.isNull(p.getName()) || p.getCenter() == null)
+			return -1l; // TODO: throw something?
+
 		if (user == null || user.getUserId() == null)
 			return -1l; // TODO: throw something?
 
@@ -70,12 +75,11 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 
 		// create a new index indexId will be updated !
 
-		// if(MNUtil.isNull(p.getDescription()))
-		// p.setDescription("");
-		Document.Builder docBuilder = Document.newBuilder().addField(
-				Field.newBuilder().setName(FIELD_NAME).setText(p.getName()))
-		// .addField(Field.newBuilder().setName(FIELD_DESCRIPTION).setText(p.getDescription()))
-		;
+		if (MNUtil.isNull(p.getDescription()))
+			p.setDescription("");
+		Document.Builder docBuilder = Document.newBuilder()
+				.addField(Field.newBuilder().setName(FIELD_NAME).setText(p.getName()))
+				.addField(Field.newBuilder().setName(FIELD_DESCRIPTION).setText(p.getDescription()));
 
 		if (p.getIndexId() != null) {
 			docBuilder.setId(p.getIndexId()); // .addField(Field.newBuilder().setName("doc_id").setText(ch.getName()));
@@ -118,18 +122,18 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 		}
 	}
 
-	// @Override
-	// public Channel getPlaceByName(String name) {
-	// try {
-	// Ref<Channel> ref = ofy().load().key(Key.create(Channel.class, name));
-	// Channel fetched1 = ref.get();
-	// return fetched1;
-	// } catch (Exception e) {
-	// String errMsg = "Failed to getChannelByName " + name + ". Error: " + e;
-	// LOG.log(Level.SEVERE, errMsg, e);
-	// return null;
-	// }
-	// }
+	@Override
+	public Place getPlaceById(Long id) {
+		try {
+			Ref<Place> ref = ofy().load().key(Key.create(Place.class, id));
+			Place fetched1 = ref.get();
+			return fetched1;
+		} catch (Exception e) {
+			String errMsg = "Failed to getPlaceById " + id + ". Error: " + e;
+			LOG.log(Level.SEVERE, errMsg, e);
+			return null;
+		}
+	}
 
 	@Override
 	public List<Place> getAllPlaces() {
@@ -307,6 +311,35 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 	}
 
 	@Override
+	public void cleanAll() {
+		if (!MNConstants.develmode)
+			return;
+
+		for (Place p : getAllPlaces()) {
+			deletePlace(p);
+		}
+
+		// clean the search index - from https://developers.google.com/appengine/docs/java/search/overview#Removing_Documents
+		try {
+			while (true) {
+				List<String> docIds = new ArrayList<String>();
+				// Return a set of document IDs.
+				ListRequest request = ListRequest.newBuilder().setKeysOnly(true).build();
+				ListResponse<Document> response = INDEX.listDocuments(request);
+				if (response.getResults().isEmpty()) {
+					break;
+				}
+				for (Document doc : response) {
+					docIds.add(doc.getId());
+				}
+				INDEX.remove(docIds);
+			}
+		} catch (RuntimeException e) {
+			LOG.log(Level.SEVERE, "Failed to remove documents", e);
+		}
+	}
+
+	@Override
 	public Logger LOG() {
 		return LOG;
 	}
@@ -316,7 +349,7 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 		List<Place> l = searchPlace(nameFragment);
 		if (l == null)
 			return null;
-		else if (l.size() > size * page) 
+		else if (l.size() > size * page)
 			return l.subList(size * page, Math.min(size * (page + 1), l.size() - 1));
 		else
 			return null;
