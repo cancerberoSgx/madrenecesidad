@@ -131,7 +131,7 @@ public class ActionPanel extends UIObject {
 		DOMUtil.addClickHandler(actionSearchPlaceAnchor, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
-				ActionManager.getInstance().performAction(new AddPlaceAction(), null); 
+//				ActionManager.getInstance().performAction(new SearchPlaceAction(), null); 
 			}
 		});
 		

@@ -3,6 +3,7 @@ package org.sgx.madrenecesidad.client.service;
 import java.util.List;
 
 import org.sgx.madrenecesidad.client.model.Channel;
+import org.sgx.madrenecesidad.client.model.MNServiceException;
 import org.sgx.madrenecesidad.client.model.Place;
 import org.sgx.madrenecesidad.client.model.Tag;
 
@@ -11,7 +12,7 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("placeService")
 public interface PlaceService extends RemoteService {
-	public Long addPlace(Place p); 
+	public Long addPlace(Place p) throws MNServiceException; 
 	public void deletePlace(Place ch); 
 	public List<Place> getAllPlaces();
 	Place getPlaceById(Long placeId);

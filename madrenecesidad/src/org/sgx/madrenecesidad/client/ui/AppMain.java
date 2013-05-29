@@ -151,7 +151,9 @@ public class AppMain extends UIObject {
 		mainMapContainer.appendChild(mapWidget.getElement());
 		
 //		mapWidget.getParent().getElement().getStyle().setProperty("border", "4px solid pink");
-		mapWidget.setSize("100%", "400px");
+		int minMapHeight=400;
+		int h = Math.max(Window.getClientHeight()-100, minMapHeight);		
+		mapWidget.setSize("100%", +h+"px");
 	}
 
 //	protected void gmapClicked(ClickMapEvent event) {

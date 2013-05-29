@@ -5,7 +5,6 @@
 margin-top: 10px;
 }
 .group, .group > a {
-width: 100%; 
 padding: 2px 4px; 
 }
 	</ui:style>
@@ -21,7 +20,7 @@ padding: 2px 4px;
 					<a tabindex="-1" href="#" ui:field="actionAddPlaceAnchor">Add Place</a>
 				</li>
 				<li>
-					<a tabindex="-1" href="#" ui:field="actionSearchPlaceAnchor">Add Place</a>
+					<a tabindex="-1" href="#" ui:field="actionSearchPlaceAnchor">Search Place</a>
 				</li>
 				<li>
 					<a tabindex="-1" href="#">My Places</a>
@@ -35,7 +34,6 @@ padding: 2px 4px;
 				</li>
 			</ul>
 		</span>
-		<br/>
 
 		<span class="btn-group {style.group}">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -61,7 +59,6 @@ padding: 2px 4px;
 				</li>
 			</ul>
 		</span>
-<br/>
 
 		<span class="btn-group {style.group}">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -116,7 +113,6 @@ padding: 2px 4px;
 				</li>
 			</ul>
 		</span>
-<br/>
 
 
 		<span class="btn-group {style.group}">
@@ -167,7 +163,7 @@ padding: 2px 4px;
 
 			</ul>
 		</span>
-<br/>
+		
 		<div ui:field="actionOptionPanelEl" class="{style.actionOptionPanel}">
 		</div>
 

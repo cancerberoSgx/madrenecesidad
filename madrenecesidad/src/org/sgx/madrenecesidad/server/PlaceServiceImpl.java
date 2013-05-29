@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import org.sgx.madrenecesidad.client.MNConstants;
 import org.sgx.madrenecesidad.client.model.Channel;
+import org.sgx.madrenecesidad.client.model.MNServiceException;
 import org.sgx.madrenecesidad.client.model.Place;
 import org.sgx.madrenecesidad.client.model.Tag;
 import org.sgx.madrenecesidad.client.service.ChannelService;
@@ -59,18 +60,16 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 	private static final int SEARCH_LIMIT = 200;
 
 	@Override
-	public Long addPlace(Place p) {
+	public Long addPlace(Place p) throws MNServiceException {
 
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
 
-		// preconditions
-		if (MNUtil.isNull(p.getName()) || p.getCenter() == null)
-			return -1l; // TODO: throw something?
-
-		if (user == null || user.getUserId() == null)
-			return -1l; // TODO: throw something?
-
+		checkPrecondition(MNUtil.notNull(p.getName()) && p.getCenter() != null, 
+			"Invalid name or location coordinates");
+		
+		checkUserLogged(user);
+		
 		p.setOwnerId(user.getUserId());
 
 		// create a new index indexId will be updated !
@@ -96,11 +95,14 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 		} catch (RuntimeException e) {
 			String errMsg = "Failed to add/update index " + doc + ". Error: " + e;
 			LOG.log(Level.SEVERE, errMsg, e);
+			throw new MNServiceException(errMsg, e);
 		}
 		if (indexId == null) {
-			LOG.log(Level.SEVERE, "addChannel - index to the document returned a null indexId - canceling");
+			String msg = "addPlace - index to the document returned a null indexId - canceling"; 
+			LOG.log(Level.SEVERE, msg);
 			// TODO: delete the document from index ?
-			return -1l;
+			throw new MNServiceException(msg);
+//			return -1l;
 		}
 		p.setIndexId(indexId);
 
@@ -118,7 +120,8 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 		} catch (Exception e) {
 			String errMsg = "Failed to add/(update tag" + p.getName() + ". Error: " + e;
 			LOG.log(Level.SEVERE, errMsg);
-			return -1l;
+//			return -1l;
+			throw new MNServiceException(errMsg, e);
 		}
 	}
 

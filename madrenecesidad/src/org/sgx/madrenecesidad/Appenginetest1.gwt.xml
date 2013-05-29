@@ -13,6 +13,7 @@
     
     <inherits name="org.sgx.jsutil.JsUtil" />
     
+	<inherits name='org.sgx.gwteditors.Gwteditors' />
 
     <!--<inherits name="org.sgx.yuigwt.YuiGwtYuiGallery" />-->
 <!--     <inherits name="org.sgx.yuigwt.YuiGwt" /> -->

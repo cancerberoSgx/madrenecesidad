@@ -52,7 +52,9 @@ public class MNUtil {
 	public static boolean isNull(String s) {
 		return s==null||s.equals(""); 
 	}
-	
+	public static boolean notNull(String s) {
+		return ! isNull(s); 
+	}
 	
 //	public static class PlaceAddResult extends JavaScriptObject {
 //		protected PlaceAddResult(){}

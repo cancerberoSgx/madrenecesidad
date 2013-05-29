@@ -25,14 +25,14 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AddPlaceAction extends Composite implements Action {
+public class SearchPlaceAction extends Composite implements Action {
 
 	private static AddPlaceActionUiBinder uiBinder = GWT.create(AddPlaceActionUiBinder.class);
 
-	interface AddPlaceActionUiBinder extends UiBinder<Widget, AddPlaceAction> {
+	interface AddPlaceActionUiBinder extends UiBinder<Widget, SearchPlaceAction> {
 	}
 
-	public AddPlaceAction() {
+	public SearchPlaceAction() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
@@ -47,20 +47,22 @@ public class AddPlaceAction extends Composite implements Action {
 	@Override
 	public void perform(Object config) {
 		
-		MNMain.getInstance().getLayout()
-				.setStatusText("Click on the map for the location of the place you whish to add", null);
-		clickHandler = MNMain.getInstance().getLayout().getMapWidget().addClickHandler(new ClickMapHandler() {
-			
-			@Override
-			public void onEvent(ClickMapEvent event) {
-				position=event.getMouseEvent().getLatLng();
-				doAddPlace();
-			}
-		});
-		
+//		MNMain.getInstance().getLayout()
+//				.setStatusText("Click on the map for the location of the place you whish to add", null);
+//		clickHandler = MNMain.getInstance().getLayout().getMapWidget().addClickHandler(new ClickMapHandler() {
+//			
+//			@Override
+//			public void onEvent(ClickMapEvent event) {
+//				position=event.getMouseEvent().getLatLng();
+//				doAddPlace();
+//			}
+//		});
+		doSearchPlace(); 
 	}
 
-	protected void doAddPlace() {
+	protected void doSearchPlace() {
+		
+		
 		//a marker
 		MarkerOptions opts = MarkerOptions.newInstance();
 		opts.setPosition(position);
@@ -85,13 +87,15 @@ public class AddPlaceAction extends Composite implements Action {
 			@Override
 			public void onEvent(Event event) {
 				Place place = editor.flush(); 
-				MNServiceFactory.getInstance().getPlaceService().addPlace(place, new AsyncCallback<Long>() {					
+				MNServiceFactory.getInstance().getPlaceService().addPlace(place, new AsyncCallback<Long>() {
+					
 					@Override
 					public void onSuccess(Long result) {
 						MNMain.getInstance().getLayout()
 							.setStatusText("New Place Added successfully! New place id: "+result, "text-success");
 						Bootstrap.modal(modal, "hide"); 
-					}					
+					}
+					
 					@Override
 					public void onFailure(Throwable caught) {
 						MNMain.getInstance().getLayout()

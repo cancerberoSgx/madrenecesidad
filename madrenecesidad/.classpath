@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="/home/sebastian/programas/appengine-java-sdk-1.7.1/lib/testing/appengine-testing.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GWT-Maps-V3-Api"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/gwtjsutil"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gwteditors"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
