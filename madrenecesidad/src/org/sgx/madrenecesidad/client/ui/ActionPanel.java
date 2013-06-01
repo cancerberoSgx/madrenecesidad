@@ -8,6 +8,7 @@ import org.sgx.madrenecesidad.client.ui.action.DirectionsAction;
 import org.sgx.madrenecesidad.client.ui.action.ElevationAction;
 import org.sgx.madrenecesidad.client.ui.action.MeasureDistanceAction;
 import org.sgx.madrenecesidad.client.ui.action.SearchAddressAction;
+import org.sgx.madrenecesidad.client.ui.action.SearchPlaceAction;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
@@ -131,7 +132,7 @@ public class ActionPanel extends UIObject {
 		DOMUtil.addClickHandler(actionSearchPlaceAnchor, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
-//				ActionManager.getInstance().performAction(new SearchPlaceAction(), null); 
+				ActionManager.getInstance().performAction(new SearchPlaceAction(), null); 
 			}
 		});
 		

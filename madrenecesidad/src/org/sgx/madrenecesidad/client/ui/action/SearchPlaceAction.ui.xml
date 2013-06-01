@@ -6,17 +6,17 @@
 	<g:HTMLPanel>
 	
 	<div class="modal hide fade" ui:field="modal">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3>Add Place</h3>
-			</div>
-			<div class="modal-body" ui:field="modalBody">
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn" ui:field="closeButton">Close</a>
-				<a href="#" class="btn btn-primary" ui:field="addButton">Add Place!</a>
-			</div>
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Search Places</h3>
 		</div>
+		<div class="modal-body" ui:field="modalBody">
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn" ui:field="closeButton">Close</a>
+			<a href="#" class="btn btn-primary" ui:field="addButton">Add Place!</a>
+		</div>
+	</div>
 		
 		
 	</g:HTMLPanel>
