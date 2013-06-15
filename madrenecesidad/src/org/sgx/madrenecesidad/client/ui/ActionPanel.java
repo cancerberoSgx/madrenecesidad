@@ -3,12 +3,15 @@ package org.sgx.madrenecesidad.client.ui;
 import org.sgx.jsutil.client.DOMUtil;
 import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.ui.action.ActionManager;
+import org.sgx.madrenecesidad.client.ui.action.AddMapViewAction;
 import org.sgx.madrenecesidad.client.ui.action.AddPlaceAction;
 import org.sgx.madrenecesidad.client.ui.action.DirectionsAction;
 import org.sgx.madrenecesidad.client.ui.action.ElevationAction;
 import org.sgx.madrenecesidad.client.ui.action.MeasureDistanceAction;
 import org.sgx.madrenecesidad.client.ui.action.SearchAddressAction;
 import org.sgx.madrenecesidad.client.ui.action.SearchPlaceAction;
+import org.sgx.madrenecesidad.client.ui.state.MNAppState;
+import org.sgx.madrenecesidad.client.ui.state.MNStateManager;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
@@ -28,7 +31,7 @@ public class ActionPanel extends UIObject {
 	}
 
 	@UiField
-	Element actionAddPlaceAnchor, actionSearchPlaceAnchor, 
+	Element actionAddPlaceAnchor, actionAddMapView, actionSearchPlaceAnchor, 
 	actionSearchAddressAnchor, actionMeasureDistanceAnchor, actionOptionPanelEl, 
 		toolDirectionsAnchor, toolElevationAnchor,
 		mapTypeRoadmapAnchor, mapTypeSatelliteAnchor, mapTypeHybridAnchor, mapTypeTerrainAnchor;
@@ -120,21 +123,32 @@ public class ActionPanel extends UIObject {
 		DOMUtil.addClickHandler(toolElevationAnchor, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
+//				MNMain.getInstance().getStateManager().navigate(MNStateManager.STATE_ELEVATION, "");
 				ActionManager.getInstance().performAction(new ElevationAction(), null); 
 			}
 		});
 		DOMUtil.addClickHandler(actionAddPlaceAnchor, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
+//				MNMain.getInstance().getStateManager().navigate(MNStateManager.STATE_HOME, "param1:val1"); 
 				ActionManager.getInstance().performAction(new AddPlaceAction(), null); 
 			}
 		});
 		DOMUtil.addClickHandler(actionSearchPlaceAnchor, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
-				ActionManager.getInstance().performAction(new SearchPlaceAction(), null); 
+				MNMain.getInstance().getStateManager().navigate(MNStateManager.STATE_SEARCHPLACE, "");
+//						"param1:val1"); 
+//				ActionManager.getInstance().performAction(new SearchPlaceAction(), null); 
 			}
 		});
+		DOMUtil.addClickHandler(actionAddMapView, new DOMUtil.EventHandler() {
+			@Override
+			public void onEvent(Event event) {
+				ActionManager.getInstance().performAction(new AddMapViewAction(), null); 
+			}
+		});
+		
 		
 		
 	}

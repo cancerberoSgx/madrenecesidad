@@ -1,0 +1,12 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" 
+    xmlns:mneditor="urn:mneditor:org.sgx.madrenecesidad.client.ui.editors">
+	<ui:style>
+		
+	</ui:style>
+	<div>
+	    <div ui:field="searchPlaceEdEl"></div>
+	    <a href="#" class="btn btn-primary" ui:field="searchButton">Search Place!</a>
+	    
+	</div>
+</ui:UiBinder>

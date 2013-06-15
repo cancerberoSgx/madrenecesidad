@@ -1,0 +1,14 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	
+	<div>
+	    <h6>Add MapView</h6>
+	    bla ble 
+	    <div ui:field="editorEl"></div>	    
+	    bla ble 
+		<a href="#" class="btn btn-primary" ui:field="addButton">Add MapView!</a>
+	</div>	
+</ui:UiBinder> 

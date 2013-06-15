@@ -1,8 +1,5 @@
 package org.sgx.madrenecesidad.client.ui.action;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.sgx.jsutil.client.DOMUtil;
 import org.sgx.madrenecesidad.client.MNMain;
 
@@ -11,7 +8,6 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.maps.client.base.LatLng;
 import com.google.gwt.maps.client.events.click.ClickMapEvent;
 import com.google.gwt.maps.client.events.click.ClickMapHandler;
-import com.google.gwt.maps.client.mvc.MVCArray;
 import com.google.gwt.maps.client.overlays.Polyline;
 import com.google.gwt.maps.client.services.ElevationResult;
 import com.google.gwt.maps.client.services.ElevationService;
@@ -21,7 +17,7 @@ import com.google.gwt.maps.client.services.LocationElevationRequest;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
 
-public class ElevationAction implements Action {
+public class ElevationAction implements AppStateAction {
 
 	private HandlerRegistration clickHandler;
 //	List<LatLng> points=new LinkedList<LatLng>();

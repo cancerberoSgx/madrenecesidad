@@ -7,6 +7,7 @@ import org.sgx.jsutil.client.SimpleCallback;
 import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.model.MapView;
 import org.sgx.madrenecesidad.client.ui.help.AboutTheAuthor;
+import org.sgx.madrenecesidad.client.ui.util.CollapseButton;
 import org.sgx.madrenecesidad.client.util.bootstrap.Bootstrap;
 import org.sgx.madrenecesidad.client.util.gmapsmissingapi.PlaceSearchTypes;
 
@@ -51,9 +52,17 @@ public class AppMain extends UIObject {
 
 	@UiField
 	Element mainMapContainer, userPanelEl, actionPanelEl, statusText, 
-	helpAboutTheAuthor;
+	helpAboutTheAuthor, 
+	collapseMsgButtonEl, collapseEditorButtonEl, editorPanelEl;
+		
 	private MapWidget mapWidget;
 	private ActionPanel actionPanel;
+
+	private CollapseButton collapseMsgButton;
+
+	private CollapseButton collapseEditorButton;
+
+	private EditorPanel editorPanel;
 
 	public AppMain() {
 		setElement(uiBinder.createAndBindUi(this));
@@ -75,6 +84,16 @@ public class AppMain extends UIObject {
 				new AboutTheAuthor(Document.get().getBody()); 
 			}
 		});
+		
+		collapseMsgButton = new CollapseButton("show messages>>", "hide message<<", statusText); 
+		collapseMsgButtonEl.appendChild(collapseMsgButton.getElement()); 		
+
+		collapseEditorButton = new CollapseButton("show editor>>", "hide neditor<<", editorPanelEl); 
+		collapseEditorButtonEl.appendChild(collapseEditorButton.getElement()); 
+		
+		
+		editorPanel = new EditorPanel(); 
+		editorPanelEl.appendChild(editorPanel.getElement()); 
 	}
 	public ActionPanel getActionPanel() {
 		return this.actionPanel; 
@@ -118,14 +137,25 @@ public class AppMain extends UIObject {
 		statusText.setClassName(type);
 	}
 
+	public CollapseButton getCollapseEditorButton() {
+		return collapseEditorButton;
+	}
+	public EditorPanel getEditorPanel() {
+		return editorPanel;
+	}
 	private void drawMap() {
 		LatLng center = LatLng.newInstance(40.46387840039735, -3.735442161560054);
 		MapOptions mapOpts = MapOptions.newInstance();
 		mapOpts.setMapTypeId(MapTypeId.ROADMAP);
 		mapOpts.setZoom(10);
-//		mapOpts.setScaleControl(true);
+		mapOpts.setScaleControl(true);
 		mapOpts.setCenter(center);
 		mapWidget = new MapWidget(mapOpts);
+		mainMapContainer.appendChild(mapWidget.getElement());
+		int minMapHeight=400;
+		int h = Math.max(Window.getClientHeight()-100, minMapHeight);		
+		mapWidget.setSize("100%", +h+"px");
+		
 //		mapWidget.addCenterChangeHandler(new CenterChangeMapHandler() {
 //			@Override
 //			public void onEvent(CenterChangeMapEvent event) {
@@ -146,16 +176,11 @@ public class AppMain extends UIObject {
 //				gmapClicked(event); 
 //			}
 //		});
-
-		// mapWidget.setOptions(opts); //.setCenter(latlng)
-		mainMapContainer.appendChild(mapWidget.getElement());
-		
-//		mapWidget.getParent().getElement().getStyle().setProperty("border", "4px solid pink");
-		int minMapHeight=400;
-		int h = Math.max(Window.getClientHeight()-100, minMapHeight);		
-		mapWidget.setSize("100%", +h+"px");
 	}
 
+//	public Element getEditorPanel() {
+//		return editorPanel;
+//	}
 //	protected void gmapClicked(ClickMapEvent event) {
 ////		 Window.alert("zoom: " + mapWidget.getZoom()+ ", LatLng: " + mapWidget.getCenter()); 
 //

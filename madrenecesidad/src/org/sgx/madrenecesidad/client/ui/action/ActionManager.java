@@ -1,4 +1,6 @@
 package org.sgx.madrenecesidad.client.ui.action;
+
+
 /**
  * 
  * @author sg
@@ -16,9 +18,9 @@ public class ActionManager {
 		return instance;
 	}
 
-	Action currentAction = null;
+	AppStateAction currentAction = null;
 
-	public void performAction(Action a, Object actionConfig) {
+	public void performAction(AppStateAction a, Object actionConfig) {
 		if (currentAction != null)
 			currentAction.uninstall();
 		currentAction = a;

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.sgx.madrenecesidad.client.model.jso.MapViewJSO;
 
+import com.google.appengine.api.datastore.GeoPt;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.rpc.IsSerializable;
 import com.googlecode.objectify.Key;
@@ -22,8 +23,10 @@ import com.googlecode.objectify.annotation.Parent;
 public class MapView implements Serializable, IsSerializable, Owned, Protectable, JSOable {
 	@Id
 	Long id;
-	double longitude, latitude;
-	double zoom;
+//	double longitude, latitude;
+
+GeoPt center; 
+	int zoom;
 	String name, description;
 	String mapTypeId; //HIBRYD, TERRAIN, SATELLITE, ETC
 	String layers; //comma separated layer constants, ses MNConstants.LAYER_
@@ -43,21 +46,21 @@ public class MapView implements Serializable, IsSerializable, Owned, Protectable
 		this.id = id;
 	}
 
-	public double getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(double longitude) {
-		this.longitude = longitude;
-	}
-
-	public double getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
-	}
+//	public double getLongitude() {
+//		return longitude;
+//	}
+//
+//	public void setLongitude(double longitude) {
+//		this.longitude = longitude;
+//	}
+//
+//	public double getLatitude() {
+//		return latitude;
+//	}
+//
+//	public void setLatitude(double latitude) {
+//		this.latitude = latitude;
+//	}
 
 	public String getName() {
 		return name;
@@ -73,14 +76,6 @@ public class MapView implements Serializable, IsSerializable, Owned, Protectable
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public double getZoom() {
-		return zoom;
-	}
-
-	public void setZoom(double zoom) {
-		this.zoom = zoom;
 	}
 
 	/* (non-Javadoc)
@@ -129,5 +124,18 @@ public class MapView implements Serializable, IsSerializable, Owned, Protectable
 		return MapViewJSO.create().name(getName()).id(getId()+""); 
 	}
 
-	
+	public GeoPt getCenter() {
+		return center;
+	}
+
+	public void setCenter(GeoPt center) {
+		this.center = center;
+	}
+
+	public int getZoom() {
+		return zoom;
+	}
+	public void setZoom(int zoom) {
+		this.zoom = zoom;
+	}
 }

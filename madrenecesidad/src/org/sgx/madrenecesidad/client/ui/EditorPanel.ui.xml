@@ -1,0 +1,29 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+
+<div>
+	<ul class="nav nav-tabs" ui:field="headerEl">
+		<li>
+			<a href="#home" data-toggle="tab">Home</a>
+		</li>
+		<li>
+			<a href="#profile" data-toggle="tab">Profile</a>
+		</li>
+		<li>
+			<a href="#messages" data-toggle="tab">Messages</a>
+		</li>
+		<li>
+			<a href="#settings" data-toggle="tab">Settings</a>
+		</li>
+	</ul>
+
+	<div class="tab-content" ui:field="contentEl">
+<div class="tab-pane active" id="home">home la na slkd jaks dj</div>
+<div class="tab-pane" id="profile">.profile ajlsk jdalksd.</div>
+<div class="tab-pane" id="messages">. msg als kdj ..</div>
+<div class="tab-pane" id="settings">.settings ldkjf sldk fjsd..</div>
+</div>
+</div>
+
+
+</ui:UiBinder>

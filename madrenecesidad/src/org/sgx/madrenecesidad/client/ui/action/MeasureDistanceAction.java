@@ -9,7 +9,7 @@ import com.google.gwt.maps.client.events.click.ClickMapHandler;
 import com.google.gwt.maps.client.geometrylib.SphericalUtils;
 import com.google.gwt.user.client.Window;
 
-public class MeasureDistanceAction implements Action {
+public class MeasureDistanceAction implements AppStateAction {
 
 	int clickcount=0;
 	ClickMapEvent click1, click2;

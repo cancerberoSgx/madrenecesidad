@@ -1,11 +1,8 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
 	<ui:style>
-.actionOptionPanel {
-margin-top: 10px;
-}
 .group, .group > a {
-padding: 2px 4px; 
+	padding: 0;  
 }
 	</ui:style>
 	<div class="actionsMenu">
@@ -164,7 +161,7 @@ padding: 2px 4px;
 			</ul>
 		</span>
 		
-		<div ui:field="actionOptionPanelEl" class="{style.actionOptionPanel}">
+		<div ui:field="actionOptionPanelEl">
 		</div>
 
 	</div>

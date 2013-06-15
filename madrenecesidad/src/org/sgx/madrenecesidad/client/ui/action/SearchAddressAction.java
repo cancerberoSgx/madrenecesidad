@@ -7,8 +7,6 @@ import org.sgx.madrenecesidad.client.MNMain;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.maps.client.base.LatLng;
-import com.google.gwt.maps.client.events.click.ClickMapEvent;
-import com.google.gwt.maps.client.events.click.ClickMapHandler;
 import com.google.gwt.maps.client.overlays.Marker;
 import com.google.gwt.maps.client.overlays.MarkerOptions;
 import com.google.gwt.maps.client.services.Geocoder;
@@ -18,7 +16,7 @@ import com.google.gwt.maps.client.services.GeocoderResult;
 import com.google.gwt.maps.client.services.GeocoderStatus;
 import com.google.gwt.user.client.Window;
 
-public class SearchAddressAction implements Action{
+public class SearchAddressAction implements AppStateAction{
 
 	@Override
 	public void perform(Object config) {

@@ -28,7 +28,7 @@ import com.google.gwt.maps.client.services.TravelMode;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
 
-public class DirectionsAction implements Action {
+public class DirectionsAction implements AppStateAction {
 
 	HandlerRegistration clickHandler;
 	List<Marker> markers;

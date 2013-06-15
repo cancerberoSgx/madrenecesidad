@@ -20,12 +20,11 @@ import com.google.gwt.maps.client.overlays.MarkerOptions;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AddPlaceAction extends Composite implements Action {
+public class AddPlaceAction extends Composite implements AppStateAction {
 
 	private static AddPlaceActionUiBinder uiBinder = GWT.create(AddPlaceActionUiBinder.class);
 

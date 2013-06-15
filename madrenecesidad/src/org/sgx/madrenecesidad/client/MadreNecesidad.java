@@ -5,6 +5,7 @@ import org.sgx.gwteditors.client.impl1.complex.PropertyHaverEditor2;
 import org.sgx.madrenecesidad.client.ui.AppMain;
 import org.sgx.madrenecesidad.client.ui.gwteditors.EditablePlace;
 import org.sgx.madrenecesidad.client.ui.gwteditors.SearchResults;
+import org.sgx.madrenecesidad.client.ui.state.MNStateManager;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Document;
@@ -13,10 +14,21 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class MadreNecesidad implements EntryPoint {
 
 	public void onModuleLoad() {
-		main();
-		
+		main();		
 //		test1();
 //		test2();
+	}
+	private void main() {
+		AppMain mainlayout = new AppMain();		
+		MNMain.getInstance().setLayout(mainlayout);
+		
+		MNStateManager stateManager = new MNStateManager(); 
+		MNMain.getInstance().setStateManager(stateManager); 
+		
+		Document.get().getBody().appendChild(mainlayout.getElement());
+		MNMain.getInstance().notifyAfterAttach();
+		
+		stateManager.navigate("home", "");	
 	}
 
 //	private void test2() {
@@ -33,11 +45,5 @@ public class MadreNecesidad implements EntryPoint {
 //		Document.get().getBody().appendChild(mainlayout.getElement());
 //	}
 
-	private void main() {
-		AppMain mainlayout = new AppMain();
-		MNMain.getInstance().setLayout(mainlayout); 
-		Document.get().getBody().appendChild(mainlayout.getElement());
-		MNMain.getInstance().notifyAfterAttach();
-	}
-
+	
 }
