@@ -131,7 +131,7 @@ public class ActionPanel extends UIObject {
 			@Override
 			public void onEvent(Event event) {
 //				MNMain.getInstance().getStateManager().navigate(MNStateManager.STATE_HOME, "param1:val1"); 
-				ActionManager.getInstance().performAction(new AddPlaceAction(), null); 
+				
 			}
 		});
 		DOMUtil.addClickHandler(actionSearchPlaceAnchor, new DOMUtil.EventHandler() {
@@ -148,8 +148,6 @@ public class ActionPanel extends UIObject {
 				ActionManager.getInstance().performAction(new AddMapViewAction(), null); 
 			}
 		});
-		
-		
 		
 	}
 	

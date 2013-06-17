@@ -7,6 +7,7 @@ import org.sgx.jsutil.client.SimpleCallback;
 import org.sgx.madrenecesidad.client.service.MNServiceFactory;
 import org.sgx.madrenecesidad.client.ui.AppMain;
 import org.sgx.madrenecesidad.client.ui.state.MNStateManager;
+import org.sgx.madrenecesidad.client.ui.view.MNViewManager;
 
 public class MNMain {
 	private static MNMain instance;
@@ -14,6 +15,7 @@ public class MNMain {
 	private MNMain() {
 		afterAttachListeners=new LinkedList<SimpleCallback>();
 		serviceFactory = MNServiceFactory.getInstance(); 
+		viewManager = MNViewManager.getInstance(); 
 	}
 
 	public static MNMain getInstance() {
@@ -26,7 +28,7 @@ public class MNMain {
 	AppMain layout; 
 	MNStateManager stateManager; 
 	MNServiceFactory serviceFactory; 
-	
+	MNViewManager viewManager; 
 	/**
 	 * @param e
 	 * @return
@@ -44,6 +46,9 @@ public class MNMain {
 
 	public MNServiceFactory getServiceFactory() {
 		return serviceFactory;
+	}
+	public MNViewManager getViewManager() {
+		return viewManager;
 	}
 	
 	public AppMain getLayout() {

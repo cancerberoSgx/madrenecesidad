@@ -65,4 +65,15 @@ public class Bootstrap {
 		$wnd.$(e).modal(options);
 	}-*/;
 
+//	public static final native void tabEnable(Element el)/*-{
+//	    $wnd.$(el).click(function (e) {
+//		    e.preventDefault();
+//		    $wnd.$(this).tab('show');
+//	    })
+//	}-*/;
+	public static final native void tabShow(Element el)/*-{
+	     $wnd.$(el).tab('show');
+	}-*/;
+
+
 }

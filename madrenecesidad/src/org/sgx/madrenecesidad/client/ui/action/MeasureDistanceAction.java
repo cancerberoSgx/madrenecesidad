@@ -21,7 +21,7 @@ public class MeasureDistanceAction implements AppStateAction {
 			
 			@Override
 			public void onEvent(ClickMapEvent event) {
-				System.out.println("MeasureDistanceAction click");
+//				System.out.println("MeasureDistanceAction click");
 				if(clickcount==0) {
 					click1=event;
 					clickcount++;

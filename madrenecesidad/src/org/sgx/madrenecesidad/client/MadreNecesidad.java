@@ -28,7 +28,7 @@ public class MadreNecesidad implements EntryPoint {
 		Document.get().getBody().appendChild(mainlayout.getElement());
 		MNMain.getInstance().notifyAfterAttach();
 		
-		stateManager.navigate("home", "");	
+		stateManager.navigate(stateManager.getDefaultState(), "");	
 	}
 
 //	private void test2() {

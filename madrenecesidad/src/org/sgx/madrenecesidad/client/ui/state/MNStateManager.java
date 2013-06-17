@@ -1,24 +1,17 @@
 package org.sgx.madrenecesidad.client.ui.state;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import org.sgx.jsutil.client.DOMUtil;
 import org.sgx.jsutil.client.appstate.AbstractAppStateManager;
-//import org.sgx.jsutil.client.appstate.AppStateAction;
 import org.sgx.jsutil.client.appstate.AppState;
 import org.sgx.jsutil.client.appstate.AppStateParamHelper;
 import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.ui.action.ActionManager;
 import org.sgx.madrenecesidad.client.ui.action.AddPlaceAction;
-import org.sgx.madrenecesidad.client.ui.action.ElevationAction;
 import org.sgx.madrenecesidad.client.ui.action.HomeUi;
-import org.sgx.madrenecesidad.client.ui.action.SearchPlaceAction;
-import org.sgx.madrenecesidad.client.ui.view.NotFound;
+import org.sgx.madrenecesidad.client.ui.editors.PlaceSearchModel;
 import org.sgx.madrenecesidad.client.ui.view.SearchPlacePanel;
 
-import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.UIObject;
 
 public class MNStateManager extends AbstractAppStateManager {
@@ -26,61 +19,49 @@ public class MNStateManager extends AbstractAppStateManager {
 	public static final String STATE_HOME = "home", STATE_SEARCHPLACE = "searchPlace", STATE_ADDPLACE = "addPlace",
 			STATE_NOTFOUND = "notFound", STATE_ELEVATION = "elevationTool";
 
+	
 	public MNStateManager() {
 		super();
 
-		addState(new MNAppState(STATE_HOME) {// new AppStateAction() {
+		addState(new MNAppState(STATE_HOME) {
 			@Override
 			public void perform(String params) {
-				Element containerEl = MNMain.getInstance().getLayout().getEditorPanel().getElement();
-				// DOMUtil.clear(containerEl);
-				containerEl.appendChild(new HomeUi().getElement());
+				HomeUi view = MNMain.getInstance().getViewManager().getView(HomeUi.class);
+				MNMain.getInstance().getLayout().getStatePanel().setState(this, view);
 			}
 		});
 
 		addState(new MNAppState(STATE_SEARCHPLACE) {
 			@Override
 			public void perform(String config) {
-				// Window.alert("search place");
-				// ActionManager.getInstance().performAction(new SearchPlaceAction(), null);
-				Element containerEl = MNMain.getInstance().getLayout().getEditorPanel().getElement();
-				// DOMUtil.clear(containerEl);
-				containerEl.appendChild(new SearchPlacePanel().getElement());
+				System.out.println("SEARCH perform: "+config);
+				SearchPlacePanel view = MNMain.getInstance().getViewManager().getView(SearchPlacePanel.class); 
+				MNMain.getInstance().getLayout().getStatePanel().setState(this, view);
+				
+				PlaceSearchModel model = PlaceSearchModel.fromStateConfig(config); 
+				if(model!=null)
+					view.showResults(model); 
+			}
+		});
+		
+		addState(new MNAppState(STATE_ADDPLACE) {
+			@Override
+			public void perform(String config) {
+				ActionManager.getInstance().performAction(new AddPlaceAction(), null); 
+//				MNMain.getInstance().getLayout().getStatePanel()
+//					.addState(this, new SearchPlacePanel());
 			}
 
 		});
 
-//		addState(new ElevationAction());
-
-		
-		// addState(new MNState(STATE_HOME, containerEl) {
-		// @Override
-		// public void perform(String params) {
-		// super.perform(params);
-		// DOMUtil.clear(getContainerEl());
-		// getContainerEl().appendChild(new HomeUi().getElement());
-		// // Map<String, String> p = AppStateParamHelper.toParams(params);
-		// }
-		// });
-		// addState(new MNState(STATE_SEARCHPLACE, containerEl) {
-		// @Override
-		// public void perform(String params) {
-		// // Map<String, String> p = AppStateParamHelper.toParams(params);
-		// // String keywords = p.containsKey("keywords") ? p.get("keywords") : "";
-		// ActionManager.getInstance().performAction(new SearchPlaceAction(), null);
-		// }
-		// });
-		// addState(new MNState(STATE_ADDPLACE, containerEl) {
-		// @Override
-		// protected UIObject buildNewView() {
-		// AddPlaceAction action = new AddPlaceAction();
-		// ActionManager.getInstance().performAction(action, null);
-		// return AddPlaceAction.
-		// }
-		// });
-
 	}
-
+	
+	@Override
+	public void navigate(AppState state, String params) {
+		super.navigate(state, params);
+		MNMain.getInstance().getLayout().getStatePanel().setState(state, null); 
+	}
+	
 	@Override
 	public AppState getDefaultState() {
 		return this.getStates().get(STATE_HOME);
@@ -95,24 +76,11 @@ public class MNStateManager extends AbstractAppStateManager {
 				@Override
 				public void perform(String params) {
 					super.perform(params);
-					StateHelper.getContainerEl().appendChild(new NotFound().getElement());
+					MNMain.getInstance().getLayout().setStatusText("Not found", "text-error");
 				}
 			};
 		return notFoundState;
 	}
 
-	// @Override
-	// public AppStateAction getNotFoundAction() {
-	// return new AppStateAction() {
-	// @Override
-	// public void perform(Object config) {
-	// Element containerEl = MNMain.getInstance().getLayout().getEditorPanel().getElement();
-	// // DOMUtil.clear(containerEl);
-	// containerEl.appendChild(new NotFound().getElement());
-	// }
-	// @Override
-	// public void uninstall() {
-	// }
-	// };
-	// }
+
 }

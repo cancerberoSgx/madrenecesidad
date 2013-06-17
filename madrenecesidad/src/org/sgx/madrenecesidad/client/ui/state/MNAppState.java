@@ -3,7 +3,7 @@ package org.sgx.madrenecesidad.client.ui.state;
 import org.sgx.jsutil.client.DOMUtil;
 import org.sgx.jsutil.client.appstate.AppState;
 import org.sgx.madrenecesidad.client.MNMain;
-import org.sgx.madrenecesidad.client.ui.EditorPanel;
+//import org.sgx.madrenecesidad.client.ui.EditorPanel;
 
 import com.google.gwt.dom.client.Element;
 /**
@@ -17,7 +17,7 @@ public class MNAppState implements AppState {
 	
 	@Override
 	public void perform(String params) {
-		StateHelper.perform(this, params); 
+//		StateHelper.perform(this, params); 
 		
 	}
 
@@ -49,10 +49,15 @@ public class MNAppState implements AppState {
 
 	@Override
 	public void uninstall() {
-		StateHelper.uninstall(this); 
+//		StateHelper.uninstall(this); 
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return getName();
 	}
 
 	

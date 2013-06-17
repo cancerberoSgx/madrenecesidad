@@ -80,22 +80,22 @@
 
 		<div class="row-fluid">
 		
-			<div class="span9 body">
+			<div class="span12 body">
 			
 <!-- 				<img style="float: left" class="visible-desktop" src="images/logo4.png"></img> -->
 				
 				<div>		
 						
-				<div ui:field="collapseMsgButtonEl" ></div>				
+<!-- 				<div ui:field="collapseMsgButtonEl" ></div>				 -->
 				<p class="text-info alert" ui:field="statusText">
 					This is your map. Please use the Actions menu at the left / bottom for searching for places.
 					Notice that, for more advanced options like places and websites
 					publishing you must log in with a google account.
 				</p>				
 				
-				<div ui:field="collapseEditorButtonEl" ></div>
-					s			
-				<div ui:field="editorPanelEl"></div>			
+<!-- 				<div ui:field="collapseEditorButtonEl" ></div> -->
+					
+				<div ui:field="statePanelEl"></div>			
 				
 				</div>
 

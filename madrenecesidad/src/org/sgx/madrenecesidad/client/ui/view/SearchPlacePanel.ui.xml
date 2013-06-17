@@ -2,11 +2,12 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" 
     xmlns:mneditor="urn:mneditor:org.sgx.madrenecesidad.client.ui.editors">
 	<ui:style>
-		
+.button{padding-left: 4px; margin-top: 2px; }
+.results{display: none; }
 	</ui:style>
 	<div>
 	    <div ui:field="searchPlaceEdEl"></div>
-	    <a href="#" class="btn btn-primary" ui:field="searchButton">Search Place!</a>
-	    
+	    <span class="btn btn-primary {style.button}" ui:field="searchButton">Search Place!</span>
+	    <div class="{style.results}" ui:field="resultEditorEl"></div>
 	</div>
 </ui:UiBinder>

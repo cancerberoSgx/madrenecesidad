@@ -1,36 +1,48 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
-	<ui:style>
-		
-	</ui:style>
 	
-		<style type="text/css">
+<style type="text/css">
 #banner {
 	padding: 0;
 	margin: 0;
 }
 #banner .container{margin-top: 6px; }
-.collapse-button{margin: 0px; padding: 0px; color: blue; font-size: 0.87em; float: right; cursor: pointer; margin-right: 4px; }
+
+.collapse-button{
+	margin: 0px 4px 0px 4px; padding: 0px 4px 0px 4px; color: blue; 
+	font-size: 0.87em; float: right; 
+	cursor: pointer; margin-right: 4px; 
+}
 .actionsMenu { 
 	margin: 0;
 }
-#banner .dropdown-menu li{padding-left: 3px; }
-.body, .sidebar {
-	padding-top: 1.5em;
+.mapContainer {
+	margin-top: 4px;
 }
-#banner .btn-group {
-padding: 0; margin: 0; 
-}
-#banner a {padding: 0}
-#banner .actionsMenu .btn-group{margin-left: 6px; }
 
-/*
-#banner .container > * {padding-left: 15px; }
-#banner a
-#banner .container a.brand{padding-left: 0px;}
-.dropdown a{
-padding:0;
+#banner .dropdown-menu li{
+	padding-left: 3px; 
+}
+.body{padding: 4px; }
+/*.body, .sidebar {
+	padding-top: 1.5em;
 }*/
+#banner .btn-group {
+	padding: 0; margin: 0; 
+}
+#banner .actionsMenu .btn-group{
+	margin-left: 6px; 
+}
+
+#banner a {padding: 0}
+
+.state-panel .tab{
+	margin: 4px 4px 0px 0px;  
+	font-size: 1.1em; 
+	font-weight: bold;
+}
+
+
 
 
 .alert{padding: 0;margin: 0;}
@@ -49,19 +61,41 @@ body {
 	margin: 0.12em;
 	padding: 0.12em;
 }
-.form-horizontal  .control-group {
-margin-bottom: 2px; 
+
+
+form{margin: 0px 4px 0px 4px; padding: 0px 4px 0px 4px; border: 1px solid #ededed; }
+form  .control-group {
+	margin: 0; 
 }
+form  .control-group label {
+	margin: 0; 
+	padding-top: 0; 
+}
+/*
+form  .control-group controls{
+	margin: 0;display: inline;  
+}
+form label{display: inline; }
+*/
 .container-fluid {
 	padding: 0;
 }
+
+.text-info{
+	margin: 0; padding: 2px 0px 2px 0px; font-size: 0.9em; line-height: 0.9em;
+}
+	
+/*
+a {padding: 0; }
 .span3{margin: 0; padding: 0}
 .span9{margin: 0; padding: 0}
-.text-info{margin-top: 4px; font-size: 0.8em; line-height: 0.8em;}
-	
-a {padding: 0; }
 
+#banner .container > * {padding-left: 15px; }
+#banner a
+#banner .container a.brand{padding-left: 0px;}
+.dropdown a{
+padding:0;
+}*/
 
-
-		</style>
+</style>
 </ui:UiBinder>

@@ -4,22 +4,22 @@
 		
 	</ui:style>
 	<div>
-	    <form class="form-horizontal">
-			<div class="control-group">
+	    <div class="form form-inline">
+<!-- 			<div class="control-group"> -->
 				<label class="control-label">Name</label>
-				<div class="controls">
+<!-- 				<div class="controls"> -->
 					<input type="text" ui:field="keywordsEntry" placeholder="Keywords"></input>
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="control-group"> -->
+<!-- 				<div class="controls"> -->
 					<label class="checkbox">
 						<input type="checkbox" checked="true" ui:field="inCurrentMapView" 
 						    data-toggle="tooltip" title="first tooltip"></input>
 						Inside current map view?
 					</label>
-				</div>
-			</div>
-		</form>
+<!-- 				</div> -->
+<!-- 			</div> -->
+		</div>
 	</div>
 </ui:UiBinder>

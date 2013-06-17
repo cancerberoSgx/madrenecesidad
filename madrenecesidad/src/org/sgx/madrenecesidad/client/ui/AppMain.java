@@ -7,6 +7,7 @@ import org.sgx.jsutil.client.SimpleCallback;
 import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.model.MapView;
 import org.sgx.madrenecesidad.client.ui.help.AboutTheAuthor;
+import org.sgx.madrenecesidad.client.ui.state.StatePanel;
 import org.sgx.madrenecesidad.client.ui.util.CollapseButton;
 import org.sgx.madrenecesidad.client.util.bootstrap.Bootstrap;
 import org.sgx.madrenecesidad.client.util.gmapsmissingapi.PlaceSearchTypes;
@@ -53,7 +54,8 @@ public class AppMain extends UIObject {
 	@UiField
 	Element mainMapContainer, userPanelEl, actionPanelEl, statusText, 
 	helpAboutTheAuthor, 
-	collapseMsgButtonEl, collapseEditorButtonEl, editorPanelEl;
+//	collapseMsgButtonEl, collapseEditorButtonEl, 
+	statePanelEl;
 		
 	private MapWidget mapWidget;
 	private ActionPanel actionPanel;
@@ -62,7 +64,9 @@ public class AppMain extends UIObject {
 
 	private CollapseButton collapseEditorButton;
 
-	private EditorPanel editorPanel;
+	private StatePanel statePanel;
+
+//	private EditorPanel editorPanel;
 
 	public AppMain() {
 		setElement(uiBinder.createAndBindUi(this));
@@ -85,15 +89,14 @@ public class AppMain extends UIObject {
 			}
 		});
 		
-		collapseMsgButton = new CollapseButton("show messages>>", "hide message<<", statusText); 
-		collapseMsgButtonEl.appendChild(collapseMsgButton.getElement()); 		
-
-		collapseEditorButton = new CollapseButton("show editor>>", "hide neditor<<", editorPanelEl); 
-		collapseEditorButtonEl.appendChild(collapseEditorButton.getElement()); 
+//		collapseMsgButton = new CollapseButton("show messages>>", "hide message<<", statusText); 
+//		collapseMsgButtonEl.appendChild(collapseMsgButton.getElement()); 		
+//
+//		collapseEditorButton = new CollapseButton("show editor>>", "hide neditor<<", statePanelEl); 
+//		collapseEditorButtonEl.appendChild(collapseEditorButton.getElement()); 
 		
-		
-		editorPanel = new EditorPanel(); 
-		editorPanelEl.appendChild(editorPanel.getElement()); 
+		statePanel = new StatePanel(); 
+		statePanelEl.appendChild(statePanel.getElement()); 
 	}
 	public ActionPanel getActionPanel() {
 		return this.actionPanel; 
@@ -140,8 +143,8 @@ public class AppMain extends UIObject {
 	public CollapseButton getCollapseEditorButton() {
 		return collapseEditorButton;
 	}
-	public EditorPanel getEditorPanel() {
-		return editorPanel;
+	public StatePanel getStatePanel() {
+		return statePanel;
 	}
 	private void drawMap() {
 		LatLng center = LatLng.newInstance(40.46387840039735, -3.735442161560054);
