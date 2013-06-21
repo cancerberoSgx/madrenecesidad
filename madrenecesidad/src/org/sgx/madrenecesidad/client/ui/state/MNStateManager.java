@@ -1,22 +1,19 @@
 package org.sgx.madrenecesidad.client.ui.state;
 
-import java.util.Map;
-
 import org.sgx.jsutil.client.appstate.AbstractAppStateManager;
 import org.sgx.jsutil.client.appstate.AppState;
-import org.sgx.jsutil.client.appstate.AppStateParamHelper;
 import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.ui.action.ActionManager;
 import org.sgx.madrenecesidad.client.ui.action.AddPlaceAction;
 import org.sgx.madrenecesidad.client.ui.action.HomeUi;
 import org.sgx.madrenecesidad.client.ui.editors.PlaceSearchModel;
+import org.sgx.madrenecesidad.client.ui.view.SearchMapViewPanel;
 import org.sgx.madrenecesidad.client.ui.view.SearchPlacePanel;
-
-import com.google.gwt.user.client.ui.UIObject;
 
 public class MNStateManager extends AbstractAppStateManager {
 
-	public static final String STATE_HOME = "home", STATE_SEARCHPLACE = "searchPlace", STATE_ADDPLACE = "addPlace",
+	public static final String STATE_HOME = "home", STATE_SEARCHPLACE = "searchPlace", 
+			STATE_SEARCHMAPVIEW="searchMap", STATE_ADDPLACE = "addPlace",
 			STATE_NOTFOUND = "notFound", STATE_ELEVATION = "elevationTool";
 
 	
@@ -34,13 +31,24 @@ public class MNStateManager extends AbstractAppStateManager {
 		addState(new MNAppState(STATE_SEARCHPLACE) {
 			@Override
 			public void perform(String config) {
-				System.out.println("SEARCH perform: "+config);
 				SearchPlacePanel view = MNMain.getInstance().getViewManager().getView(SearchPlacePanel.class); 
 				MNMain.getInstance().getLayout().getStatePanel().setState(this, view);
 				
 				PlaceSearchModel model = PlaceSearchModel.fromStateConfig(config); 
 				if(model!=null)
 					view.showResults(model); 
+			}
+		});
+		
+		addState(new MNAppState(STATE_SEARCHMAPVIEW) {
+			@Override
+			public void perform(String config) {
+				SearchMapViewPanel view = MNMain.getInstance().getViewManager().getView(SearchMapViewPanel.class); 
+				MNMain.getInstance().getLayout().getStatePanel().setState(this, view);
+				
+//				PlaceSearchModel model = PlaceSearchModel.fromStateConfig(config); 
+//				if(model!=null)
+//					view.showResults(model); 
 			}
 		});
 		

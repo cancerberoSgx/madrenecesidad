@@ -24,10 +24,13 @@
 				</li>
 				<li class="divider"></li>
 				<li>
-					<a tabindex="-1" href="#" ui:field="actionAddMapView">Add Map View</a>
+					<a tabindex="-1" href="#" ui:field="actionAddMapView">Add Map</a>
 				</li>
 				<li>
-					<a tabindex="-1" href="#">My Map Views</a>
+					<a tabindex="-1" href="#" ui:field="actionSearchMapView">Search Map</a>
+				</li>
+				<li>
+					<a tabindex="-1" href="#">My Map</a>
 				</li>
 			</ul>
 		</span>

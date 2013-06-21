@@ -31,7 +31,7 @@ public class ActionPanel extends UIObject {
 	}
 
 	@UiField
-	Element actionAddPlaceAnchor, actionAddMapView, actionSearchPlaceAnchor, 
+	Element actionAddPlaceAnchor, actionAddMapView, actionSearchMapView, actionSearchPlaceAnchor, 
 	actionSearchAddressAnchor, actionMeasureDistanceAnchor, actionOptionPanelEl, 
 		toolDirectionsAnchor, toolElevationAnchor,
 		mapTypeRoadmapAnchor, mapTypeSatelliteAnchor, mapTypeHybridAnchor, mapTypeTerrainAnchor;
@@ -130,6 +130,7 @@ public class ActionPanel extends UIObject {
 		DOMUtil.addClickHandler(actionAddPlaceAnchor, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
+				MNMain.getInstance().getStateManager().navigate(MNStateManager.STATE_ADDPLACE, "");
 //				MNMain.getInstance().getStateManager().navigate(MNStateManager.STATE_HOME, "param1:val1"); 
 				
 			}
@@ -146,6 +147,13 @@ public class ActionPanel extends UIObject {
 			@Override
 			public void onEvent(Event event) {
 				ActionManager.getInstance().performAction(new AddMapViewAction(), null); 
+			}
+		});
+		DOMUtil.addClickHandler(actionSearchMapView, new DOMUtil.EventHandler() {
+			@Override
+			public void onEvent(Event event) {
+				MNMain.getInstance().getStateManager().navigate(MNStateManager.STATE_SEARCHMAPVIEW, "");
+//				ActionManager.getInstance().performAction(new AddMapViewAction(), null); 
 			}
 		});
 		

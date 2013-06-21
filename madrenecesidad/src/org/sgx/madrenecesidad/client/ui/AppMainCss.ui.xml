@@ -35,13 +35,21 @@
 }
 
 #banner a {padding: 0}
-
-.state-panel .tab{
-	margin: 4px 4px 0px 0px;  
-	font-size: 1.1em; 
-	font-weight: bold;
+.state-panel .tabs {
+padding: 0; margin: 4px 0px 0px 0px; 
 }
-
+.state-panel .tabs a {
+	font-size: 1.1em;
+	margin: 4px 6px 0px 0px;  
+	padding-right: 4px; 
+	font-size: 1.1em; 
+	cursor: pointer; 
+}
+.state-panel .tabs a.active {
+	font-size: 1.2em; 
+	font-weight: bold;
+	text-decoration: underline; 
+}
 
 
 

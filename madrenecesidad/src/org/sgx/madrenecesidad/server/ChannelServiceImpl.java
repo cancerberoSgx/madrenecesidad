@@ -13,13 +13,11 @@ import org.sgx.madrenecesidad.client.model.Channel;
 import org.sgx.madrenecesidad.client.model.Tag;
 import org.sgx.madrenecesidad.client.service.ChannelService;
 
-import com.google.appengine.api.search.AddResponse;
 import com.google.appengine.api.search.Document;
 import com.google.appengine.api.search.Field;
 import com.google.appengine.api.search.Index;
 import com.google.appengine.api.search.IndexSpec;
-import com.google.appengine.api.search.ListRequest;
-import com.google.appengine.api.search.ListResponse;
+import com.google.appengine.api.search.PutResponse;
 import com.google.appengine.api.search.Results;
 import com.google.appengine.api.search.ScoredDocument;
 import com.google.appengine.api.search.SearchServiceFactory;
@@ -29,7 +27,6 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.Ref;
-import com.googlecode.objectify.cmd.Query;
 
 /**
  * The server side implementation of the RPC service for channels
@@ -94,7 +91,7 @@ public void addChannel(Channel ch) {
 	String indexId=null; 
 	
 	try {
-		AddResponse addresp = INDEX.add(doc);
+		PutResponse addresp = INDEX.put(doc);
 		indexId = addresp.getIds().get(0); 
 //		List<String> ids = ; 
 		LOG.info("Adding/updating channel to search index:\n" + doc.toString()+" - doc_id: "+indexId);
@@ -176,7 +173,7 @@ public void deleteChannel(Channel ch) {
 	try {
 		//and delete from indexes to
 		if(ch.getIndexId()!=null && !ch.getIndexId().equals("")) {
-			INDEX.remove(ch.getIndexId());
+			INDEX.delete(ch.getIndexId());
 			LOG().info("deleted channel from INDEX: "+ch+" - indexId: "+ch.getIndexId());
 		}		 
 	} catch (Exception e) {
@@ -196,43 +193,43 @@ public List<Tag> getTags(Channel c) {
 	return tags; 
 }
 @Override
-public void cleanAll() {
+public void cleanAll() {//TODO: commented while updating appengine sdk
 	
-	if(!MNConstants.develmode)
-		return;
-//	List<Channel> alltags = ofy().load().type(Channel.class).list();
-//	List<Channel> ret = new LinkedList<Channel>();
-//	for (Channel t : ofy().load().type(Channel.class).list()) {
-//		ret.add(t);
-//		ofy().delete().entity(t).now();
+//	if(!MNConstants.develmode)
+//		return;
+////	List<Channel> alltags = ofy().load().type(Channel.class).list();
+////	List<Channel> ret = new LinkedList<Channel>();
+////	for (Channel t : ofy().load().type(Channel.class).list()) {
+////		ret.add(t);
+////		ofy().delete().entity(t).now();
+////	}
+////	for(Channel t : ret) {
+////		ofy().delete().entity(t).now();
+////	}
+//	
+//	List<Channel> allch = getChannels(); 
+//	for (Channel c : allch) {
+//		deleteChannel(c); 
 //	}
-//	for(Channel t : ret) {
-//		ofy().delete().entity(t).now();
+//	
+//	//clean the search index - from https://developers.google.com/appengine/docs/java/search/overview#Removing_Documents
+//	try {
+//	    while (true) {
+//	        List<String> docIds = new ArrayList<String>();
+//	        // Return a set of document IDs.
+//	        ListRequest request = ListRequest.newBuilder().setKeysOnly(true).build();
+//	        ListResponse<Document> response = INDEX.listDocuments(request);
+//	        if (response.getResults().isEmpty()) {
+//	            break;
+//	        }
+//	        for (Document doc : response) {
+//	            docIds.add(doc.getId());
+//	        }
+//	        INDEX.remove(docIds);
+//	    }
+//	} catch (RuntimeException e) {
+//	    LOG.log(Level.SEVERE, "Failed to remove documents", e);
 //	}
-	
-	List<Channel> allch = getChannels(); 
-	for (Channel c : allch) {
-		deleteChannel(c); 
-	}
-	
-	//clean the search index - from https://developers.google.com/appengine/docs/java/search/overview#Removing_Documents
-	try {
-	    while (true) {
-	        List<String> docIds = new ArrayList<String>();
-	        // Return a set of document IDs.
-	        ListRequest request = ListRequest.newBuilder().setKeysOnly(true).build();
-	        ListResponse<Document> response = INDEX.listDocuments(request);
-	        if (response.getResults().isEmpty()) {
-	            break;
-	        }
-	        for (Document doc : response) {
-	            docIds.add(doc.getId());
-	        }
-	        INDEX.remove(docIds);
-	    }
-	} catch (RuntimeException e) {
-	    LOG.log(Level.SEVERE, "Failed to remove documents", e);
-	}
 }
 
 //@Override

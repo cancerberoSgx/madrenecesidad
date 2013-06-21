@@ -9,17 +9,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.sgx.madrenecesidad.client.MNConstants;
-import org.sgx.madrenecesidad.client.model.Channel;
 import org.sgx.madrenecesidad.client.model.Tag;
 import org.sgx.madrenecesidad.client.service.TagService;
 
-import com.google.appengine.api.search.AddResponse;
 import com.google.appengine.api.search.Document;
 import com.google.appengine.api.search.Field;
 import com.google.appengine.api.search.Index;
 import com.google.appengine.api.search.IndexSpec;
-import com.google.appengine.api.search.ListRequest;
-import com.google.appengine.api.search.ListResponse;
+import com.google.appengine.api.search.PutResponse;
 import com.google.appengine.api.search.Results;
 import com.google.appengine.api.search.ScoredDocument;
 import com.google.appengine.api.search.SearchServiceFactory;
@@ -65,7 +62,7 @@ public class TagServiceImpl extends AbstractService implements TagService {
 		Document doc = docBuilder.build();
 		LOG.info("Adding/updating document:\n" + doc.toString());
 		try {
-			AddResponse addresp = INDEX.add(doc);
+			PutResponse addresp = INDEX.put(doc);
 			indexId = addresp.getIds().get(0); 
 			// return "Document added";
 		} catch (RuntimeException e) {
@@ -143,7 +140,7 @@ public class TagServiceImpl extends AbstractService implements TagService {
 		try {
 			//and delete from indexes to
 			if(tag.getIndexId()!=null && !tag.getIndexId().equals("")) {
-				INDEX.remove(tag.getIndexId());
+				INDEX.delete(tag.getIndexId());
 				LOG().info("deleted tag from INDEX: "+tag+" - indexId: "+tag.getIndexId());
 			}		 
 		} catch (Exception e) {
@@ -152,32 +149,32 @@ public class TagServiceImpl extends AbstractService implements TagService {
 	}
 	
 	@Override
-	public void cleanAll() {
-		if(!MNConstants.develmode)
-			return;
-		
-		for(Tag t : getTags()) {
-			deleteTag(t); 
-		}
-		
-		//clean the search index - from https://developers.google.com/appengine/docs/java/search/overview#Removing_Documents
-		try {
-		    while (true) {
-		        List<String> docIds = new ArrayList<String>();
-		        // Return a set of document IDs.
-		        ListRequest request = ListRequest.newBuilder().setKeysOnly(true).build();
-		        ListResponse<Document> response = INDEX.listDocuments(request);
-		        if (response.getResults().isEmpty()) {
-		            break;
-		        }
-		        for (Document doc : response) {
-		            docIds.add(doc.getId());
-		        }
-		        INDEX.remove(docIds);
-		    }
-		} catch (RuntimeException e) {
-		    LOG.log(Level.SEVERE, "Failed to remove documents", e);
-		}
+	public void cleanAll() {//TODO: commented while updating appengine sdk
+//		if(!MNConstants.develmode)
+//			return;
+//		
+//		for(Tag t : getTags()) {
+//			deleteTag(t); 
+//		}
+//		
+//		//clean the search index - from https://developers.google.com/appengine/docs/java/search/overview#Removing_Documents
+//		try {
+//		    while (true) {
+//		        List<String> docIds = new ArrayList<String>();
+//		        // Return a set of document IDs.
+//		        ListRequest request = ListRequest.newBuilder().setKeysOnly(true).build();
+//		        ListResponse<Document> response = INDEX.listDocuments(request);
+//		        if (response.getResults().isEmpty()) {
+//		            break;
+//		        }
+//		        for (Document doc : response) {
+//		            docIds.add(doc.getId());
+//		        }
+//		        INDEX.remove(docIds);
+//		    }
+//		} catch (RuntimeException e) {
+//		    LOG.log(Level.SEVERE, "Failed to remove documents", e);
+//		}
 	}
 
 	@Override

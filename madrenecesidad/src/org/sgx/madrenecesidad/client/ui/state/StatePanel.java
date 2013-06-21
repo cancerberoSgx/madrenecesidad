@@ -49,13 +49,12 @@ public void setState(final AppState state, UIObject view) {
 //		String id=state.getName(); 
 		JsArray<Element> insertedEls = DOMUtil.appendTemplateAsNode(ul, 
 			"<a>%text%</a>", "text", state.getName()); 		
-		anchorTabs.put(state.getName(), insertedEls.get(0));
-		DOMUtil.addClickHandler(insertedEls.get(0), new DOMUtil.EventHandler() {			
+		Element tabEl = insertedEls.get(0); 
+		anchorTabs.put(state.getName(), tabEl);
+		DOMUtil.addClickHandler(tabEl, new DOMUtil.EventHandler() {			
 			@Override
 			public void onEvent(Event e) {
-//				e.preventDefault();
-//				e.stopPropagation(); 
-//				Window.alert("hello"); 				
+				e.preventDefault();		
 				MNMain.getInstance().getStateManager().navigate(state, ""); 
 			}
 		}); 
@@ -65,24 +64,27 @@ public void setState(final AppState state, UIObject view) {
 		
 		Element contentEl = insertedEls.get(0); 		
 		contentEl.appendChild(view.getElement()); 
-		contentEls.put(state.getName(), contentEl); ;
+		contentEls.put(state.getName(), contentEl);
 		
 		showTabContent(state); 
 
-//		Bootstrap.tabShow(anchorTabs.get(state.getName())); 
-//		MNMain.getInstance().getStateManager().navigate(state, ""); 
 	}
 	else {
 		showTabContent(state); 
-//		Bootstrap.tabShow(anchorTabs.get(state.getName())); 
-//		MNMain.getInstance().getStateManager().navigate(state, ""); 
 	}
 }
 
 private void showTabContent(AppState state) {
+	if(state==null||contentEls.get(state.getName())==null||anchorTabs.get(state.getName())==null) {
+		System.out.println("EXITING: "+state);
+		return; 
+	}
 	for(Element el : contentEls.values()) 
 		DOMUtil.hide(el); 	
 	DOMUtil.show(contentEls.get(state.getName())); 	
+	for(Element el : anchorTabs.values()) 
+		el.removeClassName("active"); 
+	anchorTabs.get(state.getName()).addClassName("active"); 
 }
 	
 }

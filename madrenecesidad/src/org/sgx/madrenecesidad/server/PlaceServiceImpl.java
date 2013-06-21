@@ -17,13 +17,14 @@ import org.sgx.madrenecesidad.client.service.ChannelService;
 import org.sgx.madrenecesidad.client.service.PlaceService;
 import org.sgx.madrenecesidad.client.util.MNUtil;
 
-import com.google.appengine.api.search.AddResponse;
+//import com.google.appengine.api.search.AddResponse;
 import com.google.appengine.api.search.Document;
 import com.google.appengine.api.search.Field;
 import com.google.appengine.api.search.Index;
 import com.google.appengine.api.search.IndexSpec;
-import com.google.appengine.api.search.ListRequest;
-import com.google.appengine.api.search.ListResponse;
+import com.google.appengine.api.search.PutResponse;
+//import com.google.appengine.api.search.ListRequest;
+//import com.google.appengine.api.search.ListResponse;
 import com.google.appengine.api.search.Results;
 import com.google.appengine.api.search.ScoredDocument;
 import com.google.appengine.api.search.SearchServiceFactory;
@@ -88,7 +89,7 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 		String indexId = null;
 
 		try {
-			AddResponse addresp = INDEX.add(doc);
+			PutResponse addresp = INDEX.put(doc); 
 			indexId = addresp.getIds().get(0);
 			// List<String> ids = ;
 			LOG.info("Adding/updating channel to search index:\n" + doc.toString() + " - doc_id: " + indexId);
@@ -201,7 +202,7 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 		try {
 			// and delete from indexes to
 			if (ch.getIndexId() != null && !ch.getIndexId().equals("")) {
-				INDEX.remove(ch.getIndexId());
+				INDEX.delete(ch.getIndexId());
 				LOG().info("deleted channel from INDEX: " + ch + " - indexId: " + ch.getIndexId());
 			}
 		} catch (Exception e) {
@@ -314,32 +315,32 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 	}
 
 	@Override
-	public void cleanAll() {
-		if (!MNConstants.develmode)
-			return;
-
-		for (Place p : getAllPlaces()) {
-			deletePlace(p);
-		}
-
-		// clean the search index - from https://developers.google.com/appengine/docs/java/search/overview#Removing_Documents
-		try {
-			while (true) {
-				List<String> docIds = new ArrayList<String>();
-				// Return a set of document IDs.
-				ListRequest request = ListRequest.newBuilder().setKeysOnly(true).build();
-				ListResponse<Document> response = INDEX.listDocuments(request);
-				if (response.getResults().isEmpty()) {
-					break;
-				}
-				for (Document doc : response) {
-					docIds.add(doc.getId());
-				}
-				INDEX.remove(docIds);
-			}
-		} catch (RuntimeException e) {
-			LOG.log(Level.SEVERE, "Failed to remove documents", e);
-		}
+	public void cleanAll() { //TODO: commented while updating appengine sdk
+//		if (!MNConstants.develmode)
+//			return;
+//
+//		for (Place p : getAllPlaces()) {
+//			deletePlace(p);
+//		}
+//
+//		// clean the search index - from https://developers.google.com/appengine/docs/java/search/overview#Removing_Documents
+//		try {
+//			while (true) {
+//				List<String> docIds = new ArrayList<String>();
+//				// Return a set of document IDs.
+//				ListRequest request = ListRequest.newBuilder().setKeysOnly(true).build();
+//				ListResponse<Document> response = INDEX.listDocuments(request);
+//				if (response.getResults().isEmpty()) {
+//					break;
+//				}
+//				for (Document doc : response) {
+//					docIds.add(doc.getId());
+//				}
+//				INDEX.remove(docIds);
+//			}
+//		} catch (RuntimeException e) {
+//			LOG.log(Level.SEVERE, "Failed to remove documents", e);
+//		}
 	}
 
 	@Override

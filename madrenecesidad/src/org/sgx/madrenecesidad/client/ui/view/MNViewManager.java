@@ -54,6 +54,10 @@ private UIObject createView(String c) {
 	else if(c.equals(HomeUi.class.getName())) {
 		view = new HomeUi(); 
 	}
+	else if(c.equals(SearchMapViewPanel.class.getName())) {
+		view = new SearchMapViewPanel(); 
+	}
+	
 	return view; 
 }
 }
