@@ -1,4 +1,4 @@
-package org.sgx.madrenecesidad.client.ui.state;
+package org.sgx.madrenecesidad.client.state;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,5 +1,6 @@
 package org.sgx.madrenecesidad.client.ui.editors;
 
+import org.sgx.madrenecesidad.client.model.MapView;
 import org.sgx.madrenecesidad.client.model.Place;
 
 import com.google.appengine.api.datastore.GeoPt;
@@ -11,7 +12,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MapViewEditor extends Composite implements MNEditor<Place>{
+public class MapViewEditor extends Composite implements MNEditor<MapView>{
 
 	private static MapViewEditorUiBinder uiBinder = GWT.create(MapViewEditorUiBinder.class);
 
@@ -26,19 +27,20 @@ public class MapViewEditor extends Composite implements MNEditor<Place>{
 	@UiField TextAreaElement descriptionEntry; 
 	
 	@Override
-	public Place flush() {
-		Place p = new Place(); 
-		p.setName(nameEntry.getValue()); 
-		p.setDescription(descriptionEntry.getValue()); 
-		p.setCenter(new GeoPt(
-			Float.parseFloat(positionLatEntry.getValue()), 
-			Float.parseFloat(positionLongEntry.getValue())
-		)); 
-		return p;
+	public MapView flush() {
+//		Place p = new Place(); 
+//		p.setName(nameEntry.getValue()); 
+//		p.setDescription(descriptionEntry.getValue()); 
+//		p.setCenter(new GeoPt(
+//			Float.parseFloat(positionLatEntry.getValue()), 
+//			Float.parseFloat(positionLongEntry.getValue())
+//		)); 
+//		return p;
+		return null;
 	}
 
 	@Override
-	public void load(Place t) {
+	public void load(MapView t) {
 		nameEntry.setValue(t.getName()); 
 		descriptionEntry.setValue(t.getDescription()); 
 		positionLatEntry.setValue(t.getCenter().getLatitude()+""); 

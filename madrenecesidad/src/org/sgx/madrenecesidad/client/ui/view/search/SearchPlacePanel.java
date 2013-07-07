@@ -1,7 +1,11 @@
-package org.sgx.madrenecesidad.client.ui.view;
+package org.sgx.madrenecesidad.client.ui.view.search;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import org.sgx.jsutil.client.DOMUtil;
 import org.sgx.jsutil.client.JavaUtil;
@@ -9,10 +13,13 @@ import org.sgx.jsutil.client.appstate.AppStateParamHelper;
 import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.model.Place;
 import org.sgx.madrenecesidad.client.service.PlaceServiceAsync;
-import org.sgx.madrenecesidad.client.ui.editors.PlaceSearchEditor;
-import org.sgx.madrenecesidad.client.ui.editors.PlaceSearchModel;
-import org.sgx.madrenecesidad.client.ui.editors.PlaceSearchResultEditor;
-import org.sgx.madrenecesidad.client.ui.state.MNStateManager;
+import org.sgx.madrenecesidad.client.state.MNStateManager;
+import org.sgx.madrenecesidad.client.ui.editors.model.PlaceSearchModel;
+import org.sgx.madrenecesidad.client.ui.editors.search.AbstractSearchResultEditor;
+import org.sgx.madrenecesidad.client.ui.editors.search.PlaceSearchEditor;
+import org.sgx.madrenecesidad.client.ui.editors.search.ColumnPrinter;
+import org.sgx.madrenecesidad.client.ui.editors.search.Searchable;
+import org.sgx.madrenecesidad.client.util.MNUtil;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
@@ -33,7 +40,8 @@ interface SearchPlacePanelUiBinder extends UiBinder<Element, SearchPlacePanel> {
 @UiField Element searchPlaceEdEl, searchButton, resultEditorEl;
 //	private PlaceSearchModel psm;
 private PlaceSearchEditor formEditor;
-PlaceSearchResultEditor resultEditor; 
+AbstractSearchResultEditor<Place> resultEditor;
+private Map<String, ColumnPrinter<Place>> resultColumns; 
 
 public SearchPlacePanel() {
 	setElement(uiBinder.createAndBindUi(this));
@@ -42,9 +50,35 @@ public SearchPlacePanel() {
 	psm.setKeywords("");
 	psm.setInCurrentMapView(false);
 	formEditor.load(psm); 
-	searchPlaceEdEl.appendChild(formEditor.getElement()); 		
-
-	resultEditor = new PlaceSearchResultEditor();	
+	searchPlaceEdEl.appendChild(formEditor.getElement()); 
+	
+	resultColumns = new LinkedHashMap<String, ColumnPrinter<Place>>();
+	resultColumns.put("Name", new ColumnPrinter<Place>() {		
+		@Override
+		public String getHTML(Place model) {
+			return model.getName();
+		}
+	}); 
+	resultColumns.put("Description", new ColumnPrinter<Place>() {		
+		@Override
+		public String getHTML(Place model) {
+			return model.getDescription();
+		}
+	}); 
+	resultColumns.put("Center", new ColumnPrinter<Place>() {		
+		@Override
+		public String getHTML(Place model) {
+			return MNUtil.htmlPrintPoint(model.getCenter()); 
+		}
+	});
+	
+	
+	resultEditor = new AbstractSearchResultEditor<Place>("Place") {
+		@Override
+		public Map<String, ColumnPrinter<Place>> getColumns() {
+			return resultColumns;
+		}
+	};	
 	resultEditorEl.appendChild(resultEditor.getElement()); 
 	
 	DOMUtil.addClickHandler(searchButton, new DOMUtil.EventHandler() {			
@@ -58,6 +92,7 @@ public SearchPlacePanel() {
 public void showResults(PlaceSearchModel model) {
 	resultEditorEl.getStyle().setProperty("display", "block"); 
 	formEditor.load(model); 
+//	System.out.println("showResults");
 //		PlaceSearchModel model = formEditor.flush(); 
 	PlaceServiceAsync service = MNMain.getInstance().getServiceFactory().getPlaceService();
 	service.searchPlace(model.getKeywords(), new AsyncCallback<List<Place>>() {			

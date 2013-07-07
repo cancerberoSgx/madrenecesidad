@@ -2,7 +2,9 @@ package org.sgx.madrenecesidad.client.model;
 
 import java.io.Serializable;
 
+import org.sgx.gwtpersistor.client.Model;
 import org.sgx.madrenecesidad.client.model.jso.MapViewJSO;
+import org.sgx.madrenecesidad.client.ui.editors.search.Searchable;
 
 import com.google.appengine.api.datastore.GeoPt;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -20,11 +22,12 @@ import com.googlecode.objectify.annotation.Parent;
  */
 @Entity
 // @Cache
-public class MapView implements Serializable, IsSerializable, Owned, Protectable, JSOable {
+public class MapView implements Serializable, IsSerializable, Owned, Protectable, JSOable/*, Model*/, Searchable{
 	@Id
 	Long id;
 //	double longitude, latitude;
 
+String indexId; 
 GeoPt center; 
 	int zoom;
 	String name, description;
@@ -61,6 +64,14 @@ GeoPt center;
 //	public void setLatitude(double latitude) {
 //		this.latitude = latitude;
 //	}
+
+	public String getIndexId() {
+		return indexId;
+	}
+
+	public void setIndexId(String indexId) {
+		this.indexId = indexId;
+	}
 
 	public String getName() {
 		return name;
@@ -138,4 +149,17 @@ GeoPt center;
 	public void setZoom(int zoom) {
 		this.zoom = zoom;
 	}
+
+	public static MapView create() {
+		MapView m = new MapView();
+		m.setZoom(3); 
+		m.setCenter(new GeoPt(0,0)); 
+		
+		return m;
+	}
+
+//	@Override
+//	public String getPersistenceId() {
+//		return getId()>0 ? getId()+"" : null; 
+//	}
 }

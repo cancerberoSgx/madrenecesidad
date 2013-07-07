@@ -1,4 +1,4 @@
-package org.sgx.madrenecesidad.client.ui.help;
+package org.sgx.madrenecesidad.client.ui.view.help;
 
 import org.sgx.madrenecesidad.client.util.bootstrap.Bootstrap;
 

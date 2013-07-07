@@ -2,13 +2,15 @@ package org.sgx.madrenecesidad.client.ui;
 
 import java.util.ArrayList;
 
+import org.sgx.gwtsizzle.client.Sizzle;
 import org.sgx.jsutil.client.DOMUtil;
+import org.sgx.jsutil.client.DOMUtil.EventHandler;
 import org.sgx.jsutil.client.SimpleCallback;
 import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.model.MapView;
-import org.sgx.madrenecesidad.client.ui.help.AboutTheAuthor;
-import org.sgx.madrenecesidad.client.ui.state.StatePanel;
+import org.sgx.madrenecesidad.client.state.StatePanel;
 import org.sgx.madrenecesidad.client.ui.util.CollapseButton;
+import org.sgx.madrenecesidad.client.ui.view.help.AboutTheAuthor;
 import org.sgx.madrenecesidad.client.util.bootstrap.Bootstrap;
 import org.sgx.madrenecesidad.client.util.gmapsmissingapi.PlaceSearchTypes;
 
@@ -16,6 +18,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.EventTarget;
 import com.google.gwt.maps.client.LoadApi;
 import com.google.gwt.maps.client.LoadApi.LoadLibrary;
 import com.google.gwt.maps.client.MapOptions;
@@ -62,7 +65,7 @@ public class AppMain extends UIObject {
 
 	private CollapseButton collapseMsgButton;
 
-	private CollapseButton collapseEditorButton;
+//	private CollapseButton collapseEditorButton;
 
 	private StatePanel statePanel;
 
@@ -97,6 +100,21 @@ public class AppMain extends UIObject {
 		
 		statePanel = new StatePanel(); 
 		statePanelEl.appendChild(statePanel.getElement()); 
+		
+		//install language selector handlers
+		EventHandler langSelHandler = new DOMUtil.EventHandler() {			
+			@Override
+			public void onEvent(Event event) {
+				Element target = event.getEventTarget().cast(); 
+				String langId = target.getAttribute("data-lang-selector");
+//				System.out.println("install language selector handlers: "+langId);
+				if(langId!=null&&!langId.equals(""))
+					MNMain.lang().loadLang(langId); 
+			}
+		}; 
+		for(Element langSelector : Sizzle.sizzleCol("[data-lang-selector]", getElement())) {
+			DOMUtil.addClickHandler(langSelector, langSelHandler); 
+		}
 	}
 	public ActionPanel getActionPanel() {
 		return this.actionPanel; 
@@ -139,10 +157,18 @@ public class AppMain extends UIObject {
 		statusText.setInnerText(text); 
 		statusText.setClassName(type);
 	}
-
-	public CollapseButton getCollapseEditorButton() {
-		return collapseEditorButton;
+	public void setStatusError(String text) {
+		statusText.setInnerText(text); 
+		statusText.setClassName("text-error");
 	}
+	public void setStatusError(String text, Throwable e) {
+		statusText.setInnerText(text+", cause: "+e); 
+		statusText.setClassName("text-error");
+	}
+
+//	public CollapseButton getCollapseEditorButton() {
+//		return collapseEditorButton;
+//	}
 	public StatePanel getStatePanel() {
 		return statePanel;
 	}

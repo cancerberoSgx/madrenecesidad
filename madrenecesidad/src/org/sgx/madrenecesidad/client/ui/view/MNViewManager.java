@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.sgx.madrenecesidad.client.ui.action.HomeUi;
+import org.sgx.madrenecesidad.client.ui.view.search.SearchMapViewPanel;
+import org.sgx.madrenecesidad.client.ui.view.search.SearchPlacePanel;
 
 import com.google.gwt.user.client.ui.UIObject;
 

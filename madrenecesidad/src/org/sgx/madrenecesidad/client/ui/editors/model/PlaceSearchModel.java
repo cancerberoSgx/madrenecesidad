@@ -1,4 +1,4 @@
-package org.sgx.madrenecesidad.client.ui.editors;
+package org.sgx.madrenecesidad.client.ui.editors.model;
 
 import java.util.Map;
 

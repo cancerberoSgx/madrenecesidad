@@ -19,6 +19,8 @@
 
 							<a class="brand hidden-phone" href="#">Madre Necesidad</a>
 
+
+							<!-- HELP Drop down -->
 							<ul class="nav pull-right" role="navigation">
 								<li class="dropdown">
 									<a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
@@ -50,7 +52,26 @@
 										</li>
 									</ul>
 								</li>
-
+							</ul>
+							
+							<!-- Language Drop down -->
+							
+							<!-- HELP Drop down -->
+							<ul class="nav pull-right" role="navigation">
+								<li class="dropdown">
+									<a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+										<span data-html="Language" >Language</span>
+										<b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+										<li role="presentation">
+											<a role="menuitem" data-lang-selector="en" data-html="English" tabindex="-1">English</a>
+										</li>
+										<li role="presentation">
+											<a role="menuitem" data-lang-selector="es" data-html="Spanish" tabindex="-1">Spanish</a>
+										</li>
+									</ul>
+								</li>
 							</ul>
 							
 							<!-- toolbars (inside header) -->

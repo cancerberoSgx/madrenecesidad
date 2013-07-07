@@ -13,11 +13,11 @@
 	        <a href="#" id="drop3" role="button" class="dropdown-toggle" 
 	            data-toggle="dropdown"><span ui:field="userName"></span> <b class="caret"></b></a>
              <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-               <li role="presentation" class="divider"></li>
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-html="My Account">My Account</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-html="My Maps">My Maps</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-html="My Places">My Places</a></li>
+<!--                <li role="presentation" class="divider"></li> -->
+<!--                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"data-html="Action">Separated link</a></li> -->
              </ul>
                       
                       
@@ -46,13 +46,14 @@
                     <li id="fat-menu" class="dropdown">
                         
                         
-	         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Guess <b class="caret"></b></a>
+	         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+	             <span data-html="Guess">Guess</span><b class="caret"></b></a>
 	         <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ui:field="loginAnchor">Login</a></li>
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-               <li role="presentation" class="divider"></li>
-               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ui:field="loginAnchor" data-html="Login">Login</a></li>
+<!--                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li> -->
+<!--                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li> -->
+<!--                <li role="presentation" class="divider"></li> -->
+<!--                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li> -->
              </ul>
              
 <!--      <span class="dropdown"> -->

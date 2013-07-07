@@ -1,4 +1,4 @@
-package org.sgx.madrenecesidad.client;
+package org.sgx.madrenecesidad.client.service;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 

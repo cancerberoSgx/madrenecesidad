@@ -3,6 +3,7 @@ package org.sgx.madrenecesidad.client.model;
 import java.io.Serializable;
 
 import org.sgx.jsutil.client.JsObject;
+import org.sgx.madrenecesidad.client.ui.editors.search.Searchable;
 
 import com.google.appengine.api.datastore.GeoPt;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -19,7 +20,7 @@ import com.googlecode.objectify.annotation.Parent;
  */
 @Entity
 //@Cache
-public class Place implements Serializable, IsSerializable {
+public class Place implements Serializable, IsSerializable, Searchable {
 @Id Long id; 
 GeoPt center; 
 String name;

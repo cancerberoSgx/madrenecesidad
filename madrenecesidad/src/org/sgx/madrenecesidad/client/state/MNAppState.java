@@ -1,4 +1,4 @@
-package org.sgx.madrenecesidad.client.ui.state;
+package org.sgx.madrenecesidad.client.state;
 
 import org.sgx.jsutil.client.DOMUtil;
 import org.sgx.jsutil.client.appstate.AppState;

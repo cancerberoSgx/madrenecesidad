@@ -1,11 +1,13 @@
 package org.sgx.madrenecesidad.client.ui;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import org.sgx.madrenecesidad.client.MNMain;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.layout.client.Layout.Layer;
 import com.google.gwt.maps.client.MapImpl;
 import com.google.gwt.maps.client.MapWidget;
@@ -23,16 +25,16 @@ import com.google.gwt.maps.client.weatherlib.CloudLayer;
 public class LayerManager {
 	private static LayerManager instance;
 
-	private LayerManager() {
+	public LayerManager() {
 		layerStatus = new HashMap<String, Boolean>();
 		layers = new HashMap<String, JavaScriptObject>();
 	}
 
-	public static LayerManager getInstance() {
-		if (instance == null)
-			instance = new LayerManager();
-		return instance;
-	}
+//	public static LayerManager getInstance() {
+//		if (instance == null)
+//			instance = new LayerManager();
+//		return instance;
+//	}
 
 //	public static interface Layer {
 //		void setMap(MapWidget m);
@@ -46,6 +48,13 @@ public class LayerManager {
 
 	Map<String, Boolean> layerStatus;
 	Map<String, JavaScriptObject> layers;
+	
+	public String getActiveAsString() {
+		JsArrayString a = JsArrayString.createArray().cast(); 
+		for(String layer : layerStatus.keySet()) 
+			a.push(layer);
+		return a.join(","); 
+	}
 
 	public void setLayer(String layer, Boolean status) {
 		JavaScriptObject l = layers.get(layer);

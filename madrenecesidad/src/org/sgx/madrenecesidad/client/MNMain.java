@@ -4,9 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.sgx.jsutil.client.SimpleCallback;
+import org.sgx.madrenecesidad.client.lang.LangManager;
 import org.sgx.madrenecesidad.client.service.MNServiceFactory;
+import org.sgx.madrenecesidad.client.state.MNStateManager;
 import org.sgx.madrenecesidad.client.ui.AppMain;
-import org.sgx.madrenecesidad.client.ui.state.MNStateManager;
+import org.sgx.madrenecesidad.client.ui.LayerManager;
 import org.sgx.madrenecesidad.client.ui.view.MNViewManager;
 
 public class MNMain {
@@ -15,9 +17,26 @@ public class MNMain {
 	private MNMain() {
 		afterAttachListeners=new LinkedList<SimpleCallback>();
 		serviceFactory = MNServiceFactory.getInstance(); 
-		viewManager = MNViewManager.getInstance(); 
+		viewManager = MNViewManager.getInstance();
+		mapLayerManager = new LayerManager(); 
+		langManager = new LangManager(); 
 	}
 
+	public static AppMain layout() {
+		return getInstance().getLayout(); 
+	}
+	public static MNServiceFactory services() {
+		return getInstance().getServiceFactory(); 
+	}
+	public static LayerManager mapLayers() {
+		return getInstance().getMapLayerManager(); 
+	}
+	public static MNStateManager states() {
+		return getInstance().getStateManager(); 
+	}
+	public static LangManager lang() {
+		return getInstance().getLangManager(); 
+	}
 	public static MNMain getInstance() {
 		if (instance == null)
 			instance = new MNMain();
@@ -29,6 +48,12 @@ public class MNMain {
 	MNStateManager stateManager; 
 	MNServiceFactory serviceFactory; 
 	MNViewManager viewManager; 
+	LangManager langManager; 
+	
+	LayerManager mapLayerManager; 
+	public LayerManager getMapLayerManager() {
+		return mapLayerManager;
+	}
 	/**
 	 * @param e
 	 * @return
@@ -64,5 +89,8 @@ public class MNMain {
 	}
 	public void setStateManager(MNStateManager stateManager) {
 		this.stateManager = stateManager;
+	}
+	public LangManager getLangManager() {
+		return langManager;
 	}
 }

@@ -1,6 +1,6 @@
 package org.sgx.madrenecesidad.server;
 
-import org.sgx.madrenecesidad.client.GreetingService;
+import org.sgx.madrenecesidad.client.service.GreetingService;
 //import org.sgx.madrenecesidad.shared.FieldVerifier;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;

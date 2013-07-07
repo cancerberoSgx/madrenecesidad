@@ -1,15 +1,10 @@
 package org.sgx.madrenecesidad.client;
 
-import org.sgx.gwteditors.client.impl1.EditorFramework1;
-import org.sgx.gwteditors.client.impl1.complex.PropertyHaverEditor2;
+import org.sgx.madrenecesidad.client.state.MNStateManager;
 import org.sgx.madrenecesidad.client.ui.AppMain;
-import org.sgx.madrenecesidad.client.ui.gwteditors.EditablePlace;
-import org.sgx.madrenecesidad.client.ui.gwteditors.SearchResults;
-import org.sgx.madrenecesidad.client.ui.state.MNStateManager;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.user.client.ui.RootPanel;
 
 public class MadreNecesidad implements EntryPoint {
 

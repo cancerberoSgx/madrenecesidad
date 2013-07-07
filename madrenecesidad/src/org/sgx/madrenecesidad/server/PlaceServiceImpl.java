@@ -313,6 +313,19 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 						+ ", returned channelList: " + channelList.size());
 		return channelList;
 	}
+	
+	
+	
+	@Override
+	public List<Place> searchPlace(String nameFragment, int size, int page) {
+		List<Place> l = searchPlace(nameFragment);
+		if (l == null)
+			return null;
+		else if (l.size() > size * page)
+			return l.subList(size * page, Math.min(size * (page + 1), l.size() - 1));
+		else
+			return null;
+	}
 
 	@Override
 	public void cleanAll() { //TODO: commented while updating appengine sdk
@@ -348,14 +361,4 @@ public class PlaceServiceImpl extends AbstractService implements PlaceService {
 		return LOG;
 	}
 
-	@Override
-	public List<Place> searchPlace(String nameFragment, int size, int page) {
-		List<Place> l = searchPlace(nameFragment);
-		if (l == null)
-			return null;
-		else if (l.size() > size * page)
-			return l.subList(size * page, Math.min(size * (page + 1), l.size() - 1));
-		else
-			return null;
-	}
 }

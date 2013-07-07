@@ -1,4 +1,4 @@
-package org.sgx.madrenecesidad.client.ui.state;
+package org.sgx.madrenecesidad.client.state;
 
 import org.sgx.madrenecesidad.client.ui.editors.MNEditor;
 

@@ -1,10 +1,14 @@
 package org.sgx.madrenecesidad.client.util;
 
+import java.text.DecimalFormat;
+
 import org.sgx.madrenecesidad.client.MNConstants;
 import org.sgx.madrenecesidad.client.UserInfo;
 
+import com.google.appengine.api.datastore.GeoPt;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.jsonp.client.JsonpRequestBuilder;
+import com.google.gwt.maps.client.base.LatLng;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -54,6 +58,17 @@ public class MNUtil {
 	}
 	public static boolean notNull(String s) {
 		return ! isNull(s); 
+	}
+
+	public static GeoPt toGeoPt(LatLng center) {
+		return new GeoPt((float)center.getLatitude(), (float)center.getLongitude()); 
+	}
+
+	public static String htmlPrintPoint(GeoPt center) {
+		return center.toString(); 
+//	 double d = 1.234567;
+//        DecimalFormat df = new DecimalFormat("#.##");
+//        return df.format(d)
 	}
 	
 //	public static class PlaceAddResult extends JavaScriptObject {

@@ -1,0 +1,12 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+	<ui:style>
+.button{padding-left: 4px; margin-top: 2px; }
+.results{display: none; }
+	</ui:style>
+	<div>
+	    <div ui:field="searchMapViewEdEl"></div>
+	    <span class="btn btn-primary {style.button}" ui:field="searchButton">Search Place!</span>
+	    <div class="{style.results}" ui:field="resultEditorEl"></div>
+	</div>
+</ui:UiBinder>

@@ -49,7 +49,7 @@ public class AddMapViewAction extends UIObject implements AppStateAction {
 //		});
 		
 //		layout.getEditorPanel().appendChild(this.getElement()); 
-		layout.getCollapseEditorButton().setVisible(true); 
+//		layout.getCollapseEditorButton().setVisible(true); 
 	}
 
 	protected void doAddPlace() {

@@ -1,6 +1,8 @@
-package org.sgx.madrenecesidad.client.ui.editors;
+package org.sgx.madrenecesidad.client.ui.editors.search;
 
 import org.sgx.madrenecesidad.client.model.Place;
+import org.sgx.madrenecesidad.client.ui.editors.MNEditor;
+import org.sgx.madrenecesidad.client.ui.editors.model.PlaceSearchModel;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;

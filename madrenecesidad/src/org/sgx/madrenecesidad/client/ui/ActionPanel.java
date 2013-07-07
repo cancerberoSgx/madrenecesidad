@@ -2,6 +2,8 @@ package org.sgx.madrenecesidad.client.ui;
 
 import org.sgx.jsutil.client.DOMUtil;
 import org.sgx.madrenecesidad.client.MNMain;
+import org.sgx.madrenecesidad.client.state.MNAppState;
+import org.sgx.madrenecesidad.client.state.MNStateManager;
 import org.sgx.madrenecesidad.client.ui.action.ActionManager;
 import org.sgx.madrenecesidad.client.ui.action.AddMapViewAction;
 import org.sgx.madrenecesidad.client.ui.action.AddPlaceAction;
@@ -10,8 +12,6 @@ import org.sgx.madrenecesidad.client.ui.action.ElevationAction;
 import org.sgx.madrenecesidad.client.ui.action.MeasureDistanceAction;
 import org.sgx.madrenecesidad.client.ui.action.SearchAddressAction;
 import org.sgx.madrenecesidad.client.ui.action.SearchPlaceAction;
-import org.sgx.madrenecesidad.client.ui.state.MNAppState;
-import org.sgx.madrenecesidad.client.ui.state.MNStateManager;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
@@ -54,38 +54,43 @@ public class ActionPanel extends UIObject {
 			}
 		});
 
+		
+		
+		
+		//LAYERS 
+		
 		DOMUtil.addClickHandler(layerTrafficCheck, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
-				LayerManager.getInstance().setLayer(LayerManager.LAYER_TRAFFIX, layerTrafficCheck.isChecked());
+				MNMain.mapLayers().setLayer(LayerManager.LAYER_TRAFFIX, layerTrafficCheck.isChecked());
 			}
 		});
 		
 		DOMUtil.addClickHandler(layerTransitCheck, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
-				LayerManager.getInstance().setLayer(LayerManager.LAYER_TRANSIT, layerTransitCheck.isChecked());
+				MNMain.mapLayers().setLayer(LayerManager.LAYER_TRANSIT, layerTransitCheck.isChecked());
 			}
 		});
 		
 		DOMUtil.addClickHandler(layerBicyclingCheck, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
-				LayerManager.getInstance().setLayer(LayerManager.LAYER_BICYCLING, layerBicyclingCheck.isChecked());
+				MNMain.mapLayers().setLayer(LayerManager.LAYER_BICYCLING, layerBicyclingCheck.isChecked());
 			}
 		});
 		
 		DOMUtil.addClickHandler(layerCloudCheck, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
-				LayerManager.getInstance().setLayer(LayerManager.LAYER_CLOUD, layerCloudCheck.isChecked());
+				MNMain.mapLayers().setLayer(LayerManager.LAYER_CLOUD, layerCloudCheck.isChecked());
 			}
 		});
 		
 		DOMUtil.addClickHandler(layerPanoramioCheck, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
-				LayerManager.getInstance().setLayer(LayerManager.LAYER_PANORAMIO, layerPanoramioCheck.isChecked());
+				MNMain.mapLayers().setLayer(LayerManager.LAYER_PANORAMIO, layerPanoramioCheck.isChecked());
 			}
 		});
 		
@@ -127,6 +132,13 @@ public class ActionPanel extends UIObject {
 				ActionManager.getInstance().performAction(new ElevationAction(), null); 
 			}
 		});
+		
+		
+		
+		
+		
+		//PLACE 		
+		
 		DOMUtil.addClickHandler(actionAddPlaceAnchor, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
@@ -143,10 +155,16 @@ public class ActionPanel extends UIObject {
 //				ActionManager.getInstance().performAction(new SearchPlaceAction(), null); 
 			}
 		});
+		
+		
+		
+		//MAP VIEW
+		
 		DOMUtil.addClickHandler(actionAddMapView, new DOMUtil.EventHandler() {
 			@Override
 			public void onEvent(Event event) {
-				ActionManager.getInstance().performAction(new AddMapViewAction(), null); 
+//				ActionManager.getInstance().performAction(new AddMapViewAction(), null); 
+				MNMain.getInstance().getStateManager().navigate(MNStateManager.STATE_ADDMAPVIEW, "");
 			}
 		});
 		DOMUtil.addClickHandler(actionSearchMapView, new DOMUtil.EventHandler() {
@@ -156,6 +174,8 @@ public class ActionPanel extends UIObject {
 //				ActionManager.getInstance().performAction(new AddMapViewAction(), null); 
 			}
 		});
+		
+		
 		
 	}
 	

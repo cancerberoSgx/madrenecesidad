@@ -1,0 +1,3 @@
+gwtservermodels - adds what is missing in default GWT RPC - a data layer in which the implementer focus on 
+call theservices (perhaps using RPC), caching, etc. Presentation layer can call the persistor intermediate layer instead
+making the rpc calls itself. 

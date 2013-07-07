@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+<ui:style>
+.name{font-weight: bold; }
+.description{}
+.coords {display: inline; }
+</ui:style>
+<div>
+    <p><span class="{style.name}" ui:field="name"></span>:
+        
+        <div class="input-prepend {style.coords}">
+		<input class="span2" type="text" placeholder="latitude" ui:field="latitude" disabled></input>
+		<span class="add-on">@</span>
+		<input class="span2"type="text" placeholder="longitude" ui:field="longitude" disabled></input>
+		</div> 
+		
+        <span class="{style.description}" ui:field="desc"></span></p>
+</div>
+</ui:UiBinder>
