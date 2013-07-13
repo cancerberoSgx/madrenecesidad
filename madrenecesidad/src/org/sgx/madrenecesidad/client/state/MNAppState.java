@@ -13,12 +13,14 @@ import com.google.gwt.dom.client.Element;
  */
 public class MNAppState implements AppState {
 
+	public static interface Listener {
+		void notifyStatePerformed(); 
+	}
 //	AppStateAction action; 
 	
 	@Override
 	public void perform(String params) {
-//		StateHelper.perform(this, params); 
-		
+//		StateHelper.perform(this, params); 		
 	}
 
 	String name, description; 

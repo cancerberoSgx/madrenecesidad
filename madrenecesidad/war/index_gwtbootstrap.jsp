@@ -43,9 +43,11 @@
 	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 
+<!--  <script src="js/bootstrap.min.js"></script>-->
+  
   </head>
 
-<body data-spy="scroll" data-target=".navbar">
+<body>
 
 <%
     String guestbookName = request.getParameter("guestbookName");
@@ -86,8 +88,6 @@
 %>
 
 
-<script src="js/bootstrap.min.js"></script>
-  
 
   </body>
 </html>

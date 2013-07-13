@@ -6,14 +6,14 @@
 .coords {display: inline; }
 </ui:style>
 <div>
-    <p><span class="{style.name}" ui:field="name"></span>:
+<!--     <p><span class="{style.name}" ui:field="name"></span>: -->
         
-        <div class="input-prepend {style.coords}">
-		<input class="span2" type="text" placeholder="latitude" ui:field="latitude" disabled></input>
-		<span class="add-on">@</span>
-		<input class="span2"type="text" placeholder="longitude" ui:field="longitude" disabled></input>
-		</div> 
+<!--         <div class="input-prepend {style.coords}"> -->
+<!-- 		<input class="span2" type="text" placeholder="latitude" ui:field="latitude"/> -->
+<!-- 		<span class="add-on">@</span> -->
+<!-- 		<input class="span2"type="text" placeholder="longitude" ui:field="longitude"/> -->
+<!-- 		</div>  -->
 		
-        <span class="{style.description}" ui:field="desc"></span></p>
+<!--         <span class="{style.description}" ui:field="desc"></span></p> -->
 </div>
 </ui:UiBinder>

@@ -6,8 +6,8 @@ import org.sgx.jsutil.client.DOMUtil;
 import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.model.Place;
 import org.sgx.madrenecesidad.client.service.MNServiceFactory;
-import org.sgx.madrenecesidad.client.ui.editors.model.PlaceSearchModel;
-import org.sgx.madrenecesidad.client.ui.editors.search.PlaceSearchEditor;
+import org.sgx.madrenecesidad.client.ui.search.PlaceSearchEditor;
+import org.sgx.madrenecesidad.client.ui.search.PlaceSearchModel;
 import org.sgx.madrenecesidad.client.util.bootstrap.Bootstrap;
 
 import com.google.gwt.core.client.GWT;

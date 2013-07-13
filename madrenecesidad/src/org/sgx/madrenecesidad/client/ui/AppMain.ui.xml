@@ -9,11 +9,11 @@
 		************-->
 	
 
-		<div class="row-fluid banner">
+		<div class="row-fluid banner" id="banner">
 
 			<div class="span12">
 
-				<div id="banner" class="navbar navbar-static">
+				<div class="navbar navbar-static">
 					<div class="navbar-inner">
 						<div class="container" style="width: auto;">
 
@@ -59,11 +59,11 @@
 							<!-- HELP Drop down -->
 							<ul class="nav pull-right" role="navigation">
 								<li class="dropdown">
-									<a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+									<a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
 										<span data-html="Language" >Language</span>
 										<b class="caret"></b>
 									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+									<ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
 										<li role="presentation">
 											<a role="menuitem" data-lang-selector="en" data-html="English" tabindex="-1">English</a>
 										</li>
@@ -105,7 +105,25 @@
 			
 <!-- 				<img style="float: left" class="visible-desktop" src="images/logo4.png"></img> -->
 				
-				<div>		
+				<div class="main-tools-panel">		
+			
+		   	 	
+		   	 	<div class="btn-group pull-right">
+                <button data-toggle="dropdown" class="btn dropdown-toggle">
+                <span class="icon-cog"></span>
+                <span data-html="Configure this Panel">Configure this Panel</span>
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Configure this panel</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+    
+				   
+    
 						
 <!-- 				<div ui:field="collapseMsgButtonEl" ></div>				 -->
 				<p class="text-info alert" ui:field="statusText">
@@ -121,7 +139,7 @@
 				</div>
 
 
-				<div class="mapContainer" ui:field="mainMapContainer"></div>
+				<div class="mapContainer" ui:field="mainMapContainer" ></div>
 
 			</div>
 		</div>

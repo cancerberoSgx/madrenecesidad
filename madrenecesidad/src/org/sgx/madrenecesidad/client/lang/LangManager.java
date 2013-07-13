@@ -20,9 +20,10 @@ import com.google.gwt.user.client.Window;
 
 public class LangManager {
 
-	private static final String DEFAULT_LANG = "en";
-	private static final String ATTRIBUTE_INNERHTML = "data-html";
-	private static final String SELECTOR_INNERHTML = "["+ATTRIBUTE_INNERHTML+"]";
+	public static final String DEFAULT_LANG = "en";
+	public static final String ATTRIBUTE_INNERHTML = "data-html";
+	public static final String ATTRIBUTE_TITLE = "data-title";
+	public static final String SELECTOR_INNERHTML = "["+ATTRIBUTE_INNERHTML+"]";
 
 	public LangManager() {
 		langs = new HashMap<String, Lang>();
@@ -48,8 +49,11 @@ public class LangManager {
 	public void loadLang(String name) {
 		if (!langs.containsKey(name))
 			createLang(name);
-		else
-			doInstallLang(langs.get(name)); 
+		else {
+			if(getCurrentLang()!=null&&!getCurrentLang().getName().equals(name))
+				doInstallLang(langs.get(name));
+		}
+			 
 
 		// if(langs.get(name)==null)
 		// return null; //lang not found
@@ -59,15 +63,12 @@ public class LangManager {
 	private void updateDocument() {
 		JsArray<Element> els = Sizzle.sizzleArray(SELECTOR_INNERHTML);
 		for (int i = 0; i < els.length(); i++) {
-
-			
 			Element el = els.get(i);
 			String key = el.getAttribute(ATTRIBUTE_INNERHTML);			
 			String value = getCurrentLang().get(key); 
 			if(value==null)
 				value=getDefaultLang().get(key); 
-			System.out.println("updateDocument: "+el+" - "+value+" - "+getCurrentLang().getName());
-			
+//			System.out.println("updateDocument: "+el+" - "+value+" - "+getCurrentLang().getName());			
 			el.setInnerHTML(value);
 		}
 	}

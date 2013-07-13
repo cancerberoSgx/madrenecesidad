@@ -3,7 +3,7 @@ package org.sgx.madrenecesidad.client.model;
 import java.io.Serializable;
 
 import org.sgx.jsutil.client.JsObject;
-import org.sgx.madrenecesidad.client.ui.editors.search.Searchable;
+import org.sgx.madrenecesidad.client.ui.search.Searchable;
 
 import com.google.appengine.api.datastore.GeoPt;
 import com.google.gwt.core.client.JavaScriptObject;

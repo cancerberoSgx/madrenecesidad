@@ -4,15 +4,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.sgx.jsutil.client.SimpleCallback;
+import org.sgx.jsutil.client.storage.Storage;
+import org.sgx.madrenecesidad.client.geolocation.GeoLocationManager;
+import org.sgx.madrenecesidad.client.lang.Lang;
 import org.sgx.madrenecesidad.client.lang.LangManager;
 import org.sgx.madrenecesidad.client.service.MNServiceFactory;
 import org.sgx.madrenecesidad.client.state.MNStateManager;
+import org.sgx.madrenecesidad.client.storage.StorageManager;
 import org.sgx.madrenecesidad.client.ui.AppMain;
 import org.sgx.madrenecesidad.client.ui.LayerManager;
 import org.sgx.madrenecesidad.client.ui.view.MNViewManager;
 
 public class MNMain {
 	private static MNMain instance;
+	private GeoLocationManager geoManager;
 
 	private MNMain() {
 		afterAttachListeners=new LinkedList<SimpleCallback>();
@@ -20,6 +25,8 @@ public class MNMain {
 		viewManager = MNViewManager.getInstance();
 		mapLayerManager = new LayerManager(); 
 		langManager = new LangManager(); 
+		storageManager = new StorageManager(); 
+		geoManager = new GeoLocationManager(); 
 	}
 
 	public static AppMain layout() {
@@ -34,7 +41,22 @@ public class MNMain {
 	public static MNStateManager states() {
 		return getInstance().getStateManager(); 
 	}
-	public static LangManager lang() {
+	public static GeoLocationManager geo() {
+		return getInstance().getGeoManager();  
+	}
+	public static Storage storage() {
+		return getInstance().getStorageManager().getStorage(); 
+	}
+	/**
+	 * get current lang dict
+	 */
+	public static Lang lang() {
+		return getInstance().getLangManager().getCurrentLang(); 
+	}
+	/**
+	 * get current lang dict
+	 */
+	public static LangManager langManager() {
 		return getInstance().getLangManager(); 
 	}
 	public static MNMain getInstance() {
@@ -49,10 +71,14 @@ public class MNMain {
 	MNServiceFactory serviceFactory; 
 	MNViewManager viewManager; 
 	LangManager langManager; 
+	StorageManager storageManager; 
+	LayerManager mapLayerManager;
 	
-	LayerManager mapLayerManager; 
 	public LayerManager getMapLayerManager() {
 		return mapLayerManager;
+	}
+	public StorageManager getStorageManager() {
+		return storageManager;
 	}
 	/**
 	 * @param e
@@ -78,6 +104,9 @@ public class MNMain {
 	
 	public AppMain getLayout() {
 		return layout;
+	}
+	public GeoLocationManager getGeoManager() {
+		return geoManager;
 	}
 
 	public void setLayout(AppMain layout) {

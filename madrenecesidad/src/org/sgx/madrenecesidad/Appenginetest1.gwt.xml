@@ -16,17 +16,19 @@
     
 	<inherits name="org.sgx.gwtsizzle.Sizzle" />
     
-	<inherits name='org.sgx.gwteditors.Gwteditors' />
-
+<!-- 	<inherits name='org.sgx.gwteditors.Gwteditors' /> -->	
+	
     <!--<inherits name="org.sgx.yuigwt.YuiGwtYuiGallery" />-->
-<!--     <inherits name="org.sgx.yuigwt.YuiGwt" /> -->
+    <inherits name="org.sgx.yuigwt.YuiGwt" />
+
+<!-- <inherits name='gwtquery.plugins.Ui' /> -->
 
     <!-- load yui.js from yahooapis -->
 
 <!--     <script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js" /> -->
     <!-- <script src='http://yui.yahooapis.com/3.8.0pr2/build/yui/yui-min.js' /> -->
 
-    <script src="http://maps.google.com/maps/api/js?libraries=places&amp;sensor=false" />
+<!--     <script src="http://maps.google.com/maps/api/js?libraries=places&amp;sensor=false" /> -->
     
     <source path="client" />
 

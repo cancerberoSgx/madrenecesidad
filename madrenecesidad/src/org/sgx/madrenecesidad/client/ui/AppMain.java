@@ -5,46 +5,37 @@ import java.util.ArrayList;
 import org.sgx.gwtsizzle.client.Sizzle;
 import org.sgx.jsutil.client.DOMUtil;
 import org.sgx.jsutil.client.DOMUtil.EventHandler;
+import org.sgx.jsutil.client.Callback;
+import org.sgx.jsutil.client.JsUtil;
 import org.sgx.jsutil.client.SimpleCallback;
+import org.sgx.madrenecesidad.client.MNConstants;
 import org.sgx.madrenecesidad.client.MNMain;
-import org.sgx.madrenecesidad.client.model.MapView;
-import org.sgx.madrenecesidad.client.state.StatePanel;
 import org.sgx.madrenecesidad.client.ui.util.CollapseButton;
 import org.sgx.madrenecesidad.client.ui.view.help.AboutTheAuthor;
 import org.sgx.madrenecesidad.client.util.bootstrap.Bootstrap;
-import org.sgx.madrenecesidad.client.util.gmapsmissingapi.PlaceSearchTypes;
+import org.sgx.yuigwt.yui.YUICallback;
+import org.sgx.yuigwt.yui.YuiContext;
+import org.sgx.yuigwt.yui.YuiLoader;
+import org.sgx.yuigwt.yui.dd.Drag;
+import org.sgx.yuigwt.yui.dd.DragConfig;
+import org.sgx.yuigwt.yui.resize.Resize;
+import org.sgx.yuigwt.yui.resize.ResizeConfig;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JsArray;
+import com.google.gwt.core.client.JsArrayMixed;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.EventTarget;
 import com.google.gwt.maps.client.LoadApi;
 import com.google.gwt.maps.client.LoadApi.LoadLibrary;
 import com.google.gwt.maps.client.MapOptions;
 import com.google.gwt.maps.client.MapTypeId;
 import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.maps.client.base.LatLng;
-import com.google.gwt.maps.client.controls.MapTypeControlOptions;
-import com.google.gwt.maps.client.events.center.CenterChangeMapEvent;
-import com.google.gwt.maps.client.events.center.CenterChangeMapHandler;
-import com.google.gwt.maps.client.events.click.ClickMapEvent;
-import com.google.gwt.maps.client.events.click.ClickMapHandler;
-import com.google.gwt.maps.client.events.maptypeid.MapTypeIdChangeMapEvent;
-import com.google.gwt.maps.client.events.maptypeid.MapTypeIdChangeMapHandler;
-import com.google.gwt.maps.client.overlays.Marker;
-import com.google.gwt.maps.client.overlays.MarkerOptions;
-import com.google.gwt.maps.client.overlays.MarkerShape;
-import com.google.gwt.maps.client.placeslib.PlaceResult;
-import com.google.gwt.maps.client.placeslib.PlaceSearchHandler;
-import com.google.gwt.maps.client.placeslib.PlaceSearchRequest;
-import com.google.gwt.maps.client.placeslib.PlacesService;
-import com.google.gwt.maps.client.placeslib.PlacesServiceStatus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.UIObject;
 
 public class AppMain extends UIObject {
@@ -69,15 +60,13 @@ public class AppMain extends UIObject {
 
 	private StatePanel statePanel;
 
+	protected Object resize;
+
 //	private EditorPanel editorPanel;
 
 	public AppMain() {
 		setElement(uiBinder.createAndBindUi(this));
 		loadMapApi();
-		Document.get().getBody().appendChild(new AppMainCss().getElement());
-		userPanelEl.appendChild(new UserPanel().getElement()); 
-		actionPanel=new ActionPanel();
-		actionPanelEl.appendChild(actionPanel.getElement());
 		MNMain.getInstance().addAfterAttachListener(new SimpleCallback() {			
 			@Override
 			public void call() {
@@ -91,31 +80,81 @@ public class AppMain extends UIObject {
 				new AboutTheAuthor(Document.get().getBody()); 
 			}
 		});
+
+		installLanguageSelector(); 
 		
-//		collapseMsgButton = new CollapseButton("show messages>>", "hide message<<", statusText); 
-//		collapseMsgButtonEl.appendChild(collapseMsgButton.getElement()); 		
-//
-//		collapseEditorButton = new CollapseButton("show editor>>", "hide neditor<<", statePanelEl); 
-//		collapseEditorButtonEl.appendChild(collapseEditorButton.getElement()); 
+
+		drawLayout(); 
 		
-		statePanel = new StatePanel(); 
-		statePanelEl.appendChild(statePanel.getElement()); 
-		
-		//install language selector handlers
-		EventHandler langSelHandler = new DOMUtil.EventHandler() {			
-			@Override
-			public void onEvent(Event event) {
-				Element target = event.getEventTarget().cast(); 
-				String langId = target.getAttribute("data-lang-selector");
-//				System.out.println("install language selector handlers: "+langId);
-				if(langId!=null&&!langId.equals(""))
-					MNMain.lang().loadLang(langId); 
-			}
-		}; 
-		for(Element langSelector : Sizzle.sizzleCol("[data-lang-selector]", getElement())) {
-			DOMUtil.addClickHandler(langSelector, langSelHandler); 
-		}
 	}
+	
+	
+
+private void drawLayout() {
+	Document.get().getBody().appendChild(new AppMainCss().getElement());
+	userPanelEl.appendChild(new UserPanel().getElement()); 
+	actionPanel=new ActionPanel();
+	actionPanelEl.appendChild(actionPanel.getElement());
+	
+//	collapseMsgButton = new CollapseButton("show messages>>", "hide message<<", statusText); 
+//	collapseMsgButtonEl.appendChild(collapseMsgButton.getElement()); 		
+//
+//	collapseEditorButton = new CollapseButton("show editor>>", "hide neditor<<", statePanelEl); 
+//	collapseEditorButtonEl.appendChild(collapseEditorButton.getElement()); 
+	
+	statePanel = new StatePanel(); 
+	statePanelEl.appendChild(statePanel.getElement()); 
+	
+//	if(MNMain.states().g)
+//	YuiTest.main(null); 
+//	doYUIResizableDraggableStuff(); 
+	
+}
+
+
+
+private void installLanguageSelector() {
+	EventHandler langSelHandler = new DOMUtil.EventHandler() {			
+		@Override
+		public void onEvent(Event event) {
+			Element target = event.getEventTarget().cast(); 
+			String langId = target.getAttribute("data-lang-selector");
+//			System.out.println("install language selector handlers: "+langId);
+			if(langId!=null&&!langId.equals("")) {
+				MNMain.langManager().loadLang(langId);
+				MNMain.storage().set(MNConstants.STORAGE_LANGUAGE, langId); 					
+			}
+		}
+	}; 
+	for(Element langSelector : Sizzle.sizzleCol("[data-lang-selector]", getElement())) {
+		DOMUtil.addClickHandler(langSelector, langSelHandler); 
+	}
+}
+
+
+
+private static void doYUIResizableDraggableStuff() {
+	String yuijs = "http://yui.yahooapis.com/3.10.3/build/yui/yui-min.js";
+	String[] modules={"resize", "resize-plugin", "dd-plugin"};
+	YUICallback callback = new YUICallback() {			
+		@Override
+		public void ready(YuiContext Y) {
+			ResizeConfig resizeConfig = ResizeConfig.create().node(".main-tools-panel"); 
+			Resize resize = Y.newResize(resizeConfig); 
+			
+			DragConfig ddConfig = DragConfig.create().node(".main-tools-panel");
+			Drag dd = Y.newDDDrag(ddConfig)
+//					.addHandle(".tabs, .alert")
+					; 
+////			
+//			Y.all(".state-panel .tabs").plug(Y.Plugin().Drag()); 
+			
+			
+		}
+	};
+	YuiLoader.load(yuijs, modules, callback); 
+}
+
 	public ActionPanel getActionPanel() {
 		return this.actionPanel; 
 	}
@@ -124,6 +163,8 @@ public class AppMain extends UIObject {
 		return mapWidget;
 	}
 	private void loadMapApi() {
+		if(MNConstants.turnTheMapOff)
+			return; 
 		boolean sensor = true;
 
 		// load all the libs for use in the maps
@@ -140,10 +181,40 @@ public class AppMain extends UIObject {
 			@Override
 			public void run() {
 				drawMap();
+				
 			}
 		};
-		
 		LoadApi.go(onLoad, loadLibraries, sensor);
+		
+		
+//		LatLng center = LatLng.newInstance(39.31, -106.02);
+//	    MapOptions opts = MapOptions.newInstance();
+//	    opts.setZoomControl(true); 
+//	    opts.setZoom(8);
+//	    opts.setCenter(center);
+//	    opts.setMapTypeId(MapTypeId.TERRAIN);
+//	    opts.setMapTypeControl(true); 
+//	    String id = mainMapContainer.getId(); 
+//	    JsUtil.whenDocumentContains(mainMapContainer, new SimpleCallback() {
+//			
+//			@Override
+//			public void call() {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		}); 
+//	    Window.alert(JsUtil.documentContains(mainMapContainer)+"");
+//	    if(id==null||id.equals("")){	    	
+//	    	id=JsUtil.getUnique("map");
+//	    	mainMapContainer.setId(id); 
+//	    }
+//
+//	    mapWidget = new MapWidget(opts);
+//	    RootPanel p = RootPanel.get(mainMapContainer.getId()); 
+//	    p.add(mapWidget); 
+//	    mainMapContainer.appendChild(mapWidget.getElement());
+//	    mapWidget.setSize("750px", "500px");
+		    
 	}
 	
 	/**
@@ -173,6 +244,7 @@ public class AppMain extends UIObject {
 		return statePanel;
 	}
 	private void drawMap() {
+//		System.out.println("drawMap123");
 		LatLng center = LatLng.newInstance(40.46387840039735, -3.735442161560054);
 		MapOptions mapOpts = MapOptions.newInstance();
 		mapOpts.setMapTypeId(MapTypeId.ROADMAP);
@@ -181,6 +253,7 @@ public class AppMain extends UIObject {
 		mapOpts.setCenter(center);
 		mapWidget = new MapWidget(mapOpts);
 		mainMapContainer.appendChild(mapWidget.getElement());
+//		mapWidget.setSize("400px", "400px");
 		int minMapHeight=400;
 		int h = Math.max(Window.getClientHeight()-100, minMapHeight);		
 		mapWidget.setSize("100%", +h+"px");
@@ -246,4 +319,12 @@ public class AppMain extends UIObject {
 ////			}
 ////		});
 //	}
+	
+	/** this view needs to be attached to the DOM by itself. 
+	 */
+	public void attachTo(Element parent) {
+		
+		loadMapApi();
+		
+	}
 }

@@ -12,8 +12,8 @@ import org.sgx.madrenecesidad.client.state.impl.ViewMapState;
 import org.sgx.madrenecesidad.client.ui.action.ActionManager;
 import org.sgx.madrenecesidad.client.ui.action.AddPlaceAction;
 import org.sgx.madrenecesidad.client.ui.action.HomeUi;
-import org.sgx.madrenecesidad.client.ui.editors.model.MapViewSearchModel;
-import org.sgx.madrenecesidad.client.ui.editors.model.PlaceSearchModel;
+import org.sgx.madrenecesidad.client.ui.search.MapViewSearchModel;
+import org.sgx.madrenecesidad.client.ui.search.PlaceSearchModel;
 import org.sgx.madrenecesidad.client.ui.view.search.SearchMapViewPanel;
 import org.sgx.madrenecesidad.client.ui.view.search.SearchPlacePanel;
 

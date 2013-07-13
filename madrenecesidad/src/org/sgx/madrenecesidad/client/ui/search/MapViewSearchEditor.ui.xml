@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder">
+	<ui:style>
+		
+	</ui:style>
+	<div>
+	    <div class="form form-inline">
+		<label class="control-label">Name
+	    	<input type="text" ui:field="keywordsEntry" placeholder="Keywords"></input>	    
+	    </label>
+		
+<!-- 		<label class="checkbox"> -->
+<!-- 			<input type="checkbox" checked="true" ui:field="inCurrentMapView"  -->
+<!-- 			    data-toggle="tooltip" title="first tooltip"></input> -->
+<!-- 			Inside current map view? -->
+<!-- 		</label> -->
+		</div>
+	</div>
+</ui:UiBinder>

@@ -14,11 +14,11 @@ import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.model.Place;
 import org.sgx.madrenecesidad.client.service.PlaceServiceAsync;
 import org.sgx.madrenecesidad.client.state.MNStateManager;
-import org.sgx.madrenecesidad.client.ui.editors.model.PlaceSearchModel;
-import org.sgx.madrenecesidad.client.ui.editors.search.AbstractSearchResultEditor;
-import org.sgx.madrenecesidad.client.ui.editors.search.PlaceSearchEditor;
-import org.sgx.madrenecesidad.client.ui.editors.search.ColumnPrinter;
-import org.sgx.madrenecesidad.client.ui.editors.search.Searchable;
+import org.sgx.madrenecesidad.client.ui.search.AbstractSearchResultEditor;
+import org.sgx.madrenecesidad.client.ui.search.ColumnPrinter;
+import org.sgx.madrenecesidad.client.ui.search.PlaceSearchEditor;
+import org.sgx.madrenecesidad.client.ui.search.PlaceSearchModel;
+import org.sgx.madrenecesidad.client.ui.search.Searchable;
 import org.sgx.madrenecesidad.client.util.MNUtil;
 
 import com.google.gwt.core.client.GWT;

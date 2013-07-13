@@ -8,7 +8,7 @@
 	    <span ui:field="loggedInPanel">
 	        
 	        <ul class="nav pull-right">
-                    <li id="fat-menu" class="dropdown">
+                    <li class="dropdown">
 	        
 	        <a href="#" id="drop3" role="button" class="dropdown-toggle" 
 	            data-toggle="dropdown"><span ui:field="userName"></span> <b class="caret"></b></a>
@@ -16,6 +16,7 @@
                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-html="My Account">My Account</a></li>
                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-html="My Maps">My Maps</a></li>
                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-html="My Places">My Places</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ui:field="locateMeLoggedInAnchor" data-html="Login">Locate me in the map</a></li>
 <!--                <li role="presentation" class="divider"></li> -->
 <!--                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"data-html="Action">Separated link</a></li> -->
              </ul>
@@ -43,13 +44,14 @@
 	        
 	        
 	        <ul class="nav pull-right">
-                    <li id="fat-menu" class="dropdown">
+                    <li class="dropdown">
                         
                         
 	         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
 	             <span data-html="Guess">Guess</span><b class="caret"></b></a>
 	         <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ui:field="loginAnchor" data-html="Login">Login</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ui:field="locateMeAnchor" data-html="Login">Locate me in the map</a></li>
 <!--                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li> -->
 <!--                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li> -->
 <!--                <li role="presentation" class="divider"></li> -->

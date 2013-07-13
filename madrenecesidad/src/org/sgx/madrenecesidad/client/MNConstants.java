@@ -4,9 +4,15 @@ import com.google.gwt.maps.client.MapTypeId;
 
 public class MNConstants {
 
-	public static boolean develmode = true;
+	public static final String STORAGE_LANGUAGE = "language";
 
+	public static boolean develmode = false;
+
+	//only for devel and measurements!!
+	public static boolean turnTheMapOff = false; 
+	
 	public static MapTypeId DEFAULT_MAPTYPE = MapTypeId.ROADMAP;
+	
 
 	// public static final String[] initialYUIModules = {"button", "cssgrids",
 	// "cssreset", "cssfonts", "router", "panel",

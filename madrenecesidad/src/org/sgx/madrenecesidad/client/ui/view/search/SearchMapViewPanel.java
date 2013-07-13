@@ -10,11 +10,11 @@ import org.sgx.madrenecesidad.client.MNMain;
 import org.sgx.madrenecesidad.client.model.MapView;
 import org.sgx.madrenecesidad.client.service.MapViewServiceAsync;
 import org.sgx.madrenecesidad.client.state.MNStateManager;
-import org.sgx.madrenecesidad.client.ui.editors.model.MapViewSearchModel;
-import org.sgx.madrenecesidad.client.ui.editors.search.AbstractSearchResultEditor;
-import org.sgx.madrenecesidad.client.ui.editors.search.ColumnPrinter;
-import org.sgx.madrenecesidad.client.ui.editors.search.MapViewSearchEditor;
-import org.sgx.madrenecesidad.client.ui.editors.search.Searchable;
+import org.sgx.madrenecesidad.client.ui.search.AbstractSearchResultEditor;
+import org.sgx.madrenecesidad.client.ui.search.ColumnPrinter;
+import org.sgx.madrenecesidad.client.ui.search.MapViewSearchEditor;
+import org.sgx.madrenecesidad.client.ui.search.MapViewSearchModel;
+import org.sgx.madrenecesidad.client.ui.search.Searchable;
 import org.sgx.madrenecesidad.client.util.MNUtil;
 
 import com.google.gwt.core.client.GWT;

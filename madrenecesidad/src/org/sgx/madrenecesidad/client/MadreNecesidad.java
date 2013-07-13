@@ -20,10 +20,16 @@ public class MadreNecesidad implements EntryPoint {
 		MNStateManager stateManager = new MNStateManager(); 
 		MNMain.getInstance().setStateManager(stateManager); 
 		
-		Document.get().getBody().appendChild(mainlayout.getElement());
+//		mainlayout.attachTo(Document.get().getBody());//
+		Document.get().getBody().appendChild(mainlayout.getElement()); 
+		
 		MNMain.getInstance().notifyAfterAttach();
 		
 		stateManager.navigate(stateManager.getDefaultState(), "");	
+		
+		if(MNMain.storage().get(MNConstants.STORAGE_LANGUAGE)!=null) {
+			MNMain.langManager().loadLang(MNMain.storage().get(MNConstants.STORAGE_LANGUAGE)); 
+		}
 	}
 
 //	private void test2() {

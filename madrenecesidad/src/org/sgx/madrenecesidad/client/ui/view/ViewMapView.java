@@ -15,7 +15,7 @@ public class ViewMapView extends UIObject {
 	interface ViewMapViewUiBinder extends UiBinder<Element, ViewMapView> {
 	}
 
-	@UiField Element latitude, longitude, desc, name; 
+//	@UiField Element latitude, longitude, desc, name; 
 	
 	public ViewMapView() {
 		setElement(uiBinder.createAndBindUi(this));

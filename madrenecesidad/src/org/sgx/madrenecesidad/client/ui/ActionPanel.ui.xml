@@ -9,60 +9,64 @@
 	
 		<span class="btn-group {style.group}">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				Actions
+			    <span data-html="Places">Places</span>				 
 				<span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 				<li>
-					<a tabindex="-1" href="#" ui:field="actionAddPlaceAnchor">Add Place</a>
+					<a tabindex="-1" href="#" ui:field="actionAddPlaceAnchor" data-html="Add Place">Add Place</a>
 				</li>
 				<li>
-					<a tabindex="-1" href="#" ui:field="actionSearchPlaceAnchor">Search Place</a>
+					<a tabindex="-1" href="#" ui:field="actionSearchPlaceAnchor" data-html="Search Places">Search Places</a>
 				</li>
 				<li>
-					<a tabindex="-1" href="#">My Places</a>
+					<a tabindex="-1" href="#" data-html="My Places">My Places</a>
 				</li>
-				<li class="divider"></li>
+			</ul>
+		</span>
+		
+		<span class="btn-group {style.group}">
+			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				<span  data-html="Maps">Maps</span>
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 				<li>
-					<a tabindex="-1" href="#" ui:field="actionAddMapView">Add Map</a>
+					<a tabindex="-1" href="#" ui:field="actionAddMapView" data-html="Add Map">Add Map</a>
 				</li>
 				<li>
-					<a tabindex="-1" href="#" ui:field="actionSearchMapView">Search Map</a>
+					<a tabindex="-1" href="#" ui:field="actionSearchMapView" data-html="Search Map">Search Map</a>
 				</li>
 				<li>
-					<a tabindex="-1" href="#">My Map</a>
+					<a tabindex="-1" href="#" data-html="My Maps">My Maps</a>
 				</li>
 			</ul>
 		</span>
 
 		<span class="btn-group {style.group}">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				Tools
+			    <span data-html="Tools">Tools</span>
 				<span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 				<li>
-					<a tabindex="-1" href="#" ui:field="actionSearchAddressAnchor">Search Address</a>
+					<a tabindex="-1" href="#" ui:field="actionSearchAddressAnchor" data-html="Search Address">Search Address</a>
 				</li>
 				<li>
-					<a tabindex="-1" href="#" ui:field="actionMeasureDistanceAnchor">Measure distance</a>
+					<a tabindex="-1" href="#" ui:field="actionMeasureDistanceAnchor" data-html="Measure Distance">Measure Distance</a>
 				</li>
 				<li>
-					<a tabindex="-1" href="#" ui:field="toolDirectionsAnchor">Directions</a>
+					<a tabindex="-1" href="#" ui:field="toolDirectionsAnchor" data-html="Directions">Directions</a>
 				</li>
 				<li>
-					<a tabindex="-1" href="#" ui:field="toolElevationAnchor">Elevation</a>
-				</li>
-				<li class="divider"></li>
-				<li>
-					<a tabindex="-1" href="#">Separated link</a>
+					<a tabindex="-1" href="#" ui:field="toolElevationAnchor" data-html="Elevations">Elevations</a>
 				</li>
 			</ul>
 		</span>
 
 		<span class="btn-group {style.group}">
 			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				Map Layers
+				<span data-html="Map Layers">Map Layers</span>
 				<span class="caret"></span>
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -71,7 +75,8 @@
 						<label class="checkbox">
 							<input type="checkbox" ui:field="layerTrafficCheck">
 							</input>
-							Traffic
+							<span data-html="Traffic">Traffic</span>
+							
 						</label>
 					</a>
 				</li>
@@ -80,7 +85,8 @@
 						<label class="checkbox">
 							<input type="checkbox" ui:field="layerTransitCheck">
 							</input>
-							Transit
+							<span data-html="Transit">Transit</span>
+							
 						</label>
 					</a>
 				</li>
@@ -89,7 +95,8 @@
 						<label class="checkbox">
 							<input type="checkbox" ui:field="layerBicyclingCheck">
 							</input>
-							Bicycling
+							<span data-html="Bicycling">Bicycling</span>
+							
 						</label>
 					</a>
 				</li>
@@ -98,7 +105,8 @@
 						<label class="checkbox">
 							<input type="checkbox" ui:field="layerCloudCheck">
 							</input>
-							Weather and Clouds
+							<span data-html="Weather and Clouds">Weather and Clouds</span>
+							
 						</label>
 					</a>
 				</li>
@@ -107,7 +115,8 @@
 						<label class="checkbox">
 							<input type="checkbox" ui:field="layerPanoramioCheck">
 							</input>
-							Panoramio
+							<span data-html="Panoramio">Panoramio</span>
+							
 						</label>
 					</a>
 				</li>

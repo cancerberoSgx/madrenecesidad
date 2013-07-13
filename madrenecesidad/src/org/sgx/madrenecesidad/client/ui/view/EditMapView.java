@@ -25,16 +25,26 @@ public class EditMapView extends UIObject {
 	interface AddMapViewUiBinder extends UiBinder<Element, EditMapView> {
 	}
 
-	@UiField Element editor, button;
-	private MapViewEditor ed; 
+	@UiField Element editor, button, title;
+	private MapViewEditor ed;
+	private MapView model;
+//	private boolean newMapView; 
 	
-	public EditMapView() {
+	public EditMapView(MapView model) {
 		setElement(uiBinder.createAndBindUi(this));
 		
-		MapView model = new MapView();
-		model.setCenter(MNUtil.toGeoPt(MNMain.getInstance().getLayout().getMapWidget().getCenter()));		
-		model.setLayers(MNMain.mapLayers().getActiveAsString()); 
-		
+		if(model==null) {
+//			this.newMapView=true;
+			model = new MapView();
+			model.setCenter(MNUtil.toGeoPt(MNMain.getInstance().getLayout().getMapWidget().getCenter()));		
+			model.setLayers(MNMain.mapLayers().getActiveAsString());
+			MNMain.lang().internationalizeHtml(title, "Add Map"); 
+		}
+		else {
+//			this.newMapView=false;
+			MNMain.lang().internationalizeHtml(title, "Edit Map"); 
+		}
+		this.model=model;
 		ed = new MapViewEditor();
 		editor.appendChild(ed.getElement()); 
 		ed.load(model); 

@@ -4,7 +4,7 @@
 		
 	</ui:style>
 	<div>
-	    <h3>Add Current Map</h3>
+	    <h3  ui:field="title">Add Map</h3>
 	    <div ui:field="editor"></div>
 	    <button class="btn" ui:field="button"></button>
 	</div>

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.sgx.gwtpersistor.client.Model;
 import org.sgx.madrenecesidad.client.model.jso.MapViewJSO;
-import org.sgx.madrenecesidad.client.ui.editors.search.Searchable;
+import org.sgx.madrenecesidad.client.ui.search.Searchable;
 
 import com.google.appengine.api.datastore.GeoPt;
 import com.google.gwt.core.client.JavaScriptObject;
